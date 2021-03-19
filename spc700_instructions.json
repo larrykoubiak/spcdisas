@@ -1,0 +1,1858 @@
+[
+    {
+        "format": "nop",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "tcall 0",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "set0  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "bbs0  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "or    a,${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "or    a,${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "or    a,(x)",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "or    a,(${0:02X}+x)",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "or    a,#${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "or    (${1:02X}),(${0:02X})",
+        "unpack": "BB",
+        "bytes": 3,
+        "args": [
+            "b",
+            "b"
+        ]
+    },
+    {
+        "format": "or1   c,${0:04X},{1:02x}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "m"
+        ]
+    },
+    {
+        "format": "asl   ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "asl   ${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "push  psw",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "tset1 ${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "brk",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "bpl   ${0:04x}",
+        "unpack": "b",
+        "bytes": 2,
+        "args": [
+            "r"
+        ]
+    },
+    {
+        "format": "tcall 1",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "clr0  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "bbc0  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "or    a,${0:02X}+x",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "or    a,${0:04X}+x",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "or    a,${0:04X}+y",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "or    a,(${0:02X})+y",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "or    ${1:02X},#${0:02X}",
+        "unpack": "BB",
+        "bytes": 3,
+        "args": [
+            "b",
+            "b"
+        ]
+    },
+    {
+        "format": "or    (x),(y)",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "decw  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "asl   ${0:02X}+x",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "asl   a",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "dec   x",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "cmp   x,${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "jmp   (${0:04X}+x)",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "clrp",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "tcall 2",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "set1  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "bbs1  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "and   a,${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "and   a,${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "and   a,(x)",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "and   a,(${0:02X}+x)",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "and   a,#${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "and   (${1:02X}),(${0:02X})",
+        "unpack": "BB",
+        "bytes": 3,
+        "args": [
+            "b",
+            "b"
+        ]
+    },
+    {
+        "format": "or1   c,!(${0:04X},{1:02x})",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "m"
+        ]
+    },
+    {
+        "format": "rol   ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "rol   ${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "push  a",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "cbne  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "bra   ${0:04x}",
+        "unpack": "b",
+        "bytes": 2,
+        "args": [
+            "r"
+        ]
+    },
+    {
+        "format": "bmi   ${0:04x}",
+        "unpack": "b",
+        "bytes": 2,
+        "args": [
+            "r"
+        ]
+    },
+    {
+        "format": "tcall 3",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "clr1  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "bbc1  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "and   a,${0:02X}+x",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "and   a,${0:04X}+x",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "and   a,${0:04X}+y",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "and   a,(${0:02X})+y",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "and   ${1:02X},#${0:02X}",
+        "unpack": "BB",
+        "bytes": 3,
+        "args": [
+            "b",
+            "b"
+        ]
+    },
+    {
+        "format": "and   (x),(y)",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "incw  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "rol   ${0:02X}+x",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "rol   a",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "inc   x",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "cmp   x,${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "call  ${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "setp",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "tcall 4",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "set2  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "bbs2  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "eor   a,${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "eor   a,${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "eor   a,(x)",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "eor   a,(${0:02X}+x)",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "eor   a,#${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "eor   (${1:02X}),(${0:02X})",
+        "unpack": "BB",
+        "bytes": 3,
+        "args": [
+            "b",
+            "b"
+        ]
+    },
+    {
+        "format": "and1  c,${0:04X},{1:02x}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "m"
+        ]
+    },
+    {
+        "format": "lsr   ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "lsr   ${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "push  x",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "tclr1 ${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "pcall ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "bvc   ${0:04x}",
+        "unpack": "b",
+        "bytes": 2,
+        "args": [
+            "r"
+        ]
+    },
+    {
+        "format": "tcall 5",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "clr2  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "bbc2  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "eor   a,${0:02X}+x",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "eor   a,${0:04X}+x",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "eor   a,${0:04X}+y",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "eor   a,(${0:02X})+y",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "eor   ${1:02X},#${0:02X}",
+        "unpack": "BB",
+        "bytes": 3,
+        "args": [
+            "b",
+            "b"
+        ]
+    },
+    {
+        "format": "eor   (x),(y)",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "cmpw  ya,${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "lsr   ${0:02X}+x",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "lsr   a",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "mov   x,a",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "cmp   y,${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "jmp   ${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "clrc",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "tcall 6",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "set3  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "bbs3  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "cmp   a,${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "cmp   a,${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "cmp   a,(x)",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "cmp   a,(${0:02X}+x)",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "cmp   a,#${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "cmp   (${1:02X}),(${0:02X})",
+        "unpack": "BB",
+        "bytes": 3,
+        "args": [
+            "b",
+            "b"
+        ]
+    },
+    {
+        "format": "and1  c,!(${0:04X},{1:02x})",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "m"
+        ]
+    },
+    {
+        "format": "ror   ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "ror   ${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "push  y",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "dbnz  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "ret",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "bvs   ${0:04x}",
+        "unpack": "b",
+        "bytes": 2,
+        "args": [
+            "r"
+        ]
+    },
+    {
+        "format": "tcall 7",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "clr3  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "bbc3  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "cmp   a,${0:02X}+x",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "cmp   a,${0:04X}+x",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "cmp   a,${0:04X}+y",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "cmp   a,(${0:02X})+y",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "cmp   ${1:02X},#${0:02X}",
+        "unpack": "BB",
+        "bytes": 3,
+        "args": [
+            "b",
+            "b"
+        ]
+    },
+    {
+        "format": "cmp   (x),(y)",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "addw  ya,${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "ror   ${0:02X}+x",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "ror   a",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "mov   a,x",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "cmp   y,${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "reti",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "setc",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "tcall 8",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "set4  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "bbs4  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "adc   a,${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "adc   a,${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "adc   a,(x)",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "adc   a,(${0:02X}+x)",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "adc   a,#${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "adc   (${1:02X}),(${0:02X})",
+        "unpack": "BB",
+        "bytes": 3,
+        "args": [
+            "b",
+            "b"
+        ]
+    },
+    {
+        "format": "eor1  c,${0:04X},{1:02x}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "m"
+        ]
+    },
+    {
+        "format": "dec   ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "dec   ${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "mov   y,#${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "pop   psw",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "mov   ${1:02X},#${0:02X}",
+        "unpack": "BB",
+        "bytes": 3,
+        "args": [
+            "b",
+            "b"
+        ]
+    },
+    {
+        "format": "bcc   ${0:04x}",
+        "unpack": "b",
+        "bytes": 2,
+        "args": [
+            "r"
+        ]
+    },
+    {
+        "format": "tcall 9",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "clr4  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "bbc4  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "adc   a,${0:02X}+x",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "adc   a,${0:04X}+x",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "adc   a,${0:04X}+y",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "adc   a,(${0:02X})+y",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "adc   ${1:02X},#${0:02X}",
+        "unpack": "BB",
+        "bytes": 3,
+        "args": [
+            "b",
+            "b"
+        ]
+    },
+    {
+        "format": "adc   (x),(y)",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "subw  ya,${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "dec   ${0:02X}+x",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "dec   a",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "mov   x,sp",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "div   ya,x",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "xcn   a",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "ei",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "tcall 10",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "set5  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "bbs5  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "sbc   a,${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "sbc   a,${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "sbc   a,(x)",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "sbc   a,(${0:02X}+x)",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "sbc   a,#${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "sbc   (${1:02X}),(${0:02X})",
+        "unpack": "BB",
+        "bytes": 3,
+        "args": [
+            "b",
+            "b"
+        ]
+    },
+    {
+        "format": "mov1  c,${0:04X},{1:02x}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "m"
+        ]
+    },
+    {
+        "format": "inc   ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "inc   ${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "cmp   y,#${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "pop   a",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "mov   (x)+,a",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "bcs   ${0:04x}",
+        "unpack": "b",
+        "bytes": 2,
+        "args": [
+            "r"
+        ]
+    },
+    {
+        "format": "tcall 11",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "clr5  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "bbc5  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "sbc   a,${0:02X}+x",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "sbc   a,${0:04X}+x",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "sbc   a,${0:04X}+y",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "sbc   a,(${0:02X})+y",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "sbc   ${1:02X},#${0:02X}",
+        "unpack": "BB",
+        "bytes": 3,
+        "args": [
+            "b",
+            "b"
+        ]
+    },
+    {
+        "format": "sbc   (x),(y)",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "movw  ya,${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "inc   ${0:02X}+x",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "inc   a",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "mov   sp,x",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "das   a",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "mov   a,(x)+",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "di",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "tcall 12",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "set6  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "bbs6  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "mov   ${0:02X},a",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "mov   ${0:04X},a",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "mov   (x),a",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "mov   (${0:02X}+x),a",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "cmp   x,#${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "mov   ${0:04X},x",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "mov1  ${0:04X},{1:02x},c",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "m"
+        ]
+    },
+    {
+        "format": "mov   ${0:02X},y",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "mov   ${0:04X},y",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "mov   x,#${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "pop   x",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "mul   ya",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "bne   ${0:04x}",
+        "unpack": "b",
+        "bytes": 2,
+        "args": [
+            "r"
+        ]
+    },
+    {
+        "format": "tcall 13",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "clr6  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "bbc6  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "mov   ${0:02X}+x,a",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "mov   ${0:04X}+x,a",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "mov   ${0:04X}+y,a",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "mov   (${0:02X})+y,a",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "mov   ${0:02X},x",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "mov   ${0:02X}+y,x",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "movw  ${0:02X},ya",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "mov   ${0:02X}+x,y",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "dec   y",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "mov   a,y",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "cbne  ${0:02X}+x,${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "daa   a",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "clrv",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "tcall 14",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "set7  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "bbs7  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "mov   a,${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "mov   a,${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "mov   a,(x)",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "mov   a,(${0:02X}+x)",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "mov   a,#${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "mov   x,${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "not1  ${0:04X},{1:02x}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "m"
+        ]
+    },
+    {
+        "format": "mov   y,${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "mov   y,${0:04X}",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "notc",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "pop   y",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "sleep",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "beq   ${0:04x}",
+        "unpack": "b",
+        "bytes": 2,
+        "args": [
+            "r"
+        ]
+    },
+    {
+        "format": "tcall 15",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "clr7  ${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "bbc7  ${0:02X},${1:04x}",
+        "unpack": "Bb",
+        "bytes": 3,
+        "args": [
+            "b",
+            "r"
+        ]
+    },
+    {
+        "format": "mov   a,${0:02X}+x",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "mov   a,${0:04X}+x",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "mov   a,${0:04X}+y",
+        "unpack": "H",
+        "bytes": 3,
+        "args": [
+            "w"
+        ]
+    },
+    {
+        "format": "mov   a,(${0:02X})+y",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "mov   x,${0:02X}",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "mov   x,${0:02X}+y",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "mov   (${1:02X}),(${0:02X})",
+        "unpack": "BB",
+        "bytes": 3,
+        "args": [
+            "b",
+            "b"
+        ]
+    },
+    {
+        "format": "mov   y,${0:02X}+x",
+        "unpack": "B",
+        "bytes": 2,
+        "args": [
+            "b"
+        ]
+    },
+    {
+        "format": "inc   y",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "mov   y,a",
+        "bytes": 1,
+        "args": []
+    },
+    {
+        "format": "dbnz  y,${0:04x}",
+        "unpack": "b",
+        "bytes": 2,
+        "args": [
+            "r"
+        ]
+    },
+    {
+        "format": "stop",
+        "bytes": 1,
+        "args": []
+    }
+]
