@@ -1,6 +1,7 @@
 from json import load
-from struct import unpack
+
 from spcfile import SPCFile
+from script import Script, DecodedInstruction
 
 class SPC700:
     def __init__(self):
@@ -25,41 +26,31 @@ class SPC700:
         self.resolve_relative = rel
         self.display_hex_vals = hex
         self.display_addr = addr
+        script = Script()
+        while self.PC < (0x10000 if stop=="eof" else int(stop,16)):
+            decinc = self.decodePC()
+            script.instructions[decinc.offset] = decinc
         with open(targetfile, "w") as o:
-            while self.PC < (0x10000 if stop=="eof" else int(stop,16)):
-                o.write(self.decodePC() + "\n")
+            for offset, decinc in script.instructions.items():
+                line = ""
+                if self.display_addr:
+                    line += "{:04x}: ".format(decinc.offset)
+                if self.display_hex_vals:
+                    hexstr = ""
+                    for i in range(len(decinc.bytes)):
+                        hexstr += "{:02x} ".format(decinc.bytes[i])
+                    line += hexstr + (' ' * (10-(len(decinc.bytes) * 3)))                    
+                line += str(decinc)
+                o.write(line + "\n")
+                
 
     def decodePC(self):
-        result = ""
         opcode = self.RAM[self.PC]
         instruction = self.__instructions[opcode]
-        formatstr = instruction["format"]
-        if instruction["bytes"] == 1:
-            result = formatstr
-        else:
-            operands = unpack("<" + instruction["unpack"],self.RAM[self.PC+1: self.PC+instruction["bytes"]])
-            formatargs=[]
-            argidx = 0
-            for arg in instruction["args"]:
-                if arg in ("b","w"):
-                    formatargs.append(operands[argidx])
-                elif arg=="r":
-                    if self.resolve_relative:
-                        formatargs.append(self.PC + operands[argidx] + instruction["bytes"])
-                    else:
-                        formatstr = formatstr.replace(":04x", ":02x")
-                        formatargs.append(operands[argidx] & 0xff)
-                elif arg=="m":
-                    formatargs.append(operands[argidx] & 0x1FFF)
-                    formatargs.append(operands[argidx] >> 13)
-                argidx +=1
-            result = formatstr.format(*formatargs)
-        if self.display_hex_vals:
-            hexstr = ""
-            for i in range(instruction["bytes"]):
-                hexstr += "{:02x} ".format(self.RAM[self.PC+i])
-            result = hexstr + (' ' * (10-(instruction["bytes"] * 3))) + result
-        if self.display_addr:
-            result = "{:04x}: ".format(self.PC) + result 
+        decinc = DecodedInstruction(
+            self.PC,
+            instruction,
+            self.RAM[self.PC: self.PC + instruction["bytes"]],
+            self.resolve_relative)
         self.PC += instruction["bytes"]
-        return result
+        return decinc
