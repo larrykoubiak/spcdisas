@@ -23,34 +23,19 @@ class SPC700:
         self.SP = spcfile.sp
         self.PSW = spcfile.psw
         self.RAM = spcfile.spcram
-        self.resolve_relative = rel
-        self.display_hex_vals = hex
-        self.display_addr = addr
         script = Script()
         while self.PC < (0x10000 if stop=="eof" else int(stop,16)):
-            decinc = self.decodePC()
+            decinc = self.decodePC(rel)
             script.instructions[decinc.offset] = decinc
-        with open(targetfile, "w") as o:
-            for offset, decinc in script.instructions.items():
-                line = ""
-                if self.display_addr:
-                    line += "{:04x}: ".format(decinc.offset)
-                if self.display_hex_vals:
-                    hexstr = ""
-                    for i in range(len(decinc.bytes)):
-                        hexstr += "{:02x} ".format(decinc.bytes[i])
-                    line += hexstr + (' ' * (10-(len(decinc.bytes) * 3)))                    
-                line += str(decinc)
-                o.write(line + "\n")
-                
+        script.export(targetfile, addr, hex)
 
-    def decodePC(self):
+    def decodePC(self, resolve_relative):
         opcode = self.RAM[self.PC]
         instruction = self.__instructions[opcode]
         decinc = DecodedInstruction(
             self.PC,
             instruction,
             self.RAM[self.PC: self.PC + instruction["bytes"]],
-            self.resolve_relative)
+            resolve_relative)
         self.PC += instruction["bytes"]
         return decinc
