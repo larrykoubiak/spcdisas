@@ -14,11 +14,10 @@ def main():
     parser.add_argument('-r','--rel',help="enable/disable relative branch resolves", action="store_false")
     parser.add_argument('outputfile',help="Target Source File",widget="FileSaver",default="test/01 Fear of the Heavens.s")
     args = parser.parse_args()
-    print(args)
     spcfile = SPCFile(args.spcfile)
     print(spcfile)
-    spc700 = SPC700()
-    spc700.disassemble(spcfile, args.outputfile,args.pc,args.stop, not args.rel, not args.hex, not args.addr)
+    spcfile.spc700.disassemble(args.outputfile,args.pc,args.stop, not args.rel, not args.hex, not args.addr)
+    spcfile.extract_samples(0x1900)
 
 if __name__ == '__main__':
     main()

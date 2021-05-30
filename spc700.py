@@ -1,10 +1,9 @@
 from json import load
-
-from spcfile import SPCFile
+from struct import unpack
 from script import Script, DecodedInstruction
 
 class SPC700:
-    def __init__(self):
+    def __init__(self, reg_bytes=None, ram=None):
         with open("spc700_instructions.json","r") as f:
             self.__instructions = load(f)
         self.PC = 0x0200
@@ -13,16 +12,16 @@ class SPC700:
         self.Y = 0x00
         self.SP = 0x01EF
         self.PSW = 0x00
-        self.RAM = bytearray(0x10000)
+        if reg_bytes is not None:
+            self.load_from_bytes(reg_bytes)
+        self.RAM = bytearray(0x10000) if ram is None else ram
 
-    def disassemble(self, spcfile: SPCFile, targetfile, pc, stop, rel, hex, addr):
+    def load_from_bytes(self, reg_bytes):
+        fmt = "HBBBHB"
+        self.PC, self.A, self.X, self.Y, self.SP, self.PSW = unpack(fmt, reg_bytes)
+
+    def disassemble(self, targetfile, pc, stop, rel, hex, addr):
         self.PC = int(pc, 16)
-        self.A = spcfile.a
-        self.X = spcfile.x
-        self.Y = spcfile.y
-        self.SP = spcfile.sp
-        self.PSW = spcfile.psw
-        self.RAM = spcfile.spcram
         script = Script()
         while self.PC < (0x10000 if stop=="eof" else int(stop,16)):
             decinc = self.decodePC(rel)
