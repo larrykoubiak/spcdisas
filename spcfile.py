@@ -1,4 +1,5 @@
 from spc700 import SPC700
+from dsp import DSP
 from struct import unpack
 from id666tag import ID666Tag
 from brr import BRR
@@ -9,6 +10,7 @@ class SPCFile:
         self.header_flags = 0
         self.version = 0
         self.spc700 = None
+        self.dsp = None
         self.id666 = None
         if filepath is not None:
             self.__parsefile(filepath)
@@ -22,6 +24,7 @@ class SPCFile:
         spcregbytes = f.read(0x09)
         self.id666 = ID666Tag(f.read(0xD2))
         self.spc700 = SPC700(spcregbytes, f.read(0x10000))
+        self.dsp = DSP(f.read(0x80))
         f.close()
 
     def extract_samples(self, diroffset):
@@ -44,13 +47,10 @@ class SPCFile:
             track_id += 1
 
     def __repr__(self):
-        result = "%s PC: 0x%04X A: 0x%02X X: 0x%02X Y: 0x%02X PSW: %s SP: 0x%02X" % (
-            self.header, 
-            self.spc700.PC, 
-            self.spc700.A, 
-            self.spc700.X, 
-            self.spc700.Y, 
-            "{0:08b}".format(self.spc700.PSW), 
-            self.spc700.SP)
-        result += "\n" + str(self.id666)
+        result = "{}\n{}\n{}\n{}".format(
+            self.header,
+            str(self.id666),
+            str(self.spc700),
+            str(self.dsp)
+        )
         return result

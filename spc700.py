@@ -38,3 +38,14 @@ class SPC700:
             resolve_relative)
         self.PC += instruction["bytes"]
         return decinc
+
+    def __repr__(self) -> str:
+        result =  "+---------------------------------------+\n"
+        result += "+            SPC700 REGISTER            +\n"
+        result += "+---------------------------------------+\n"
+        result += "|  PC  |  A |  X |  Y |  SP  |    PSW   |\n"
+        result += "+---------------------------------------+\n"
+        fmt =  "+ {:04X} | {:02X} | {:02X} | {:02X} | {:04X} | {:08b} |\n"
+        result += fmt.format(self.PC,self.A,self.X, self.Y, self.PSW, self.SP)
+        result += "+---------------------------------------+\n"
+        return result

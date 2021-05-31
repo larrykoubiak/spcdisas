@@ -33,4 +33,13 @@ class ID666Tag:
         self.emulator = fields[9]
 
     def __repr__(self):
-        return str(self.__dict__)
+        result =  "+--------------------------------------------------------------+\n"
+        result += "+                         ID666 TAGS                           +\n"
+        result += "+--------------------------------------------------------------+\n"
+        result += "| SONG TITLE  | {:^46} |\n".format(self.song_title)
+        result += "+--------------------------------------------------------------+\n"
+        result += "| GAME TITLE  | {:^46} |\n".format(self.game_title)
+        result += "+--------------------------------------------------------------+\n"
+        result += "| SONG ARTIST | {:^46} |\n".format(self.artist_of_song)
+        result += "+--------------------------------------------------------------+\n"
+        return result
