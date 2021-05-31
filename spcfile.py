@@ -1,8 +1,7 @@
 from spc700 import SPC700
-from dsp import DSP
 from struct import unpack
 from id666tag import ID666Tag
-from brr import BRR
+
 import os
 class SPCFile:
     def __init__(self, filepath=None):
@@ -10,7 +9,6 @@ class SPCFile:
         self.header_flags = 0
         self.version = 0
         self.spc700 = None
-        self.dsp = None
         self.id666 = None
         if filepath is not None:
             self.__parsefile(filepath)
@@ -23,34 +21,23 @@ class SPCFile:
         self.version = fields[4]
         spcregbytes = f.read(0x09)
         self.id666 = ID666Tag(f.read(0xD2))
-        self.spc700 = SPC700(spcregbytes, f.read(0x10000))
-        self.dsp = DSP(f.read(0x80))
+        self.spc700 = SPC700(spcregbytes, f.read(0x10000), f.read(0x80))
         f.close()
 
-    def extract_samples(self, diroffset):
-        offset = diroffset
-        brr = BRR(self.spc700.RAM)
-        sample_offset,loop_offset = unpack("<HH",self.spc700.RAM[offset:offset+4])
-        offset +=4
-        track_id = 0
-        while sample_offset > 0:
-            if sample_offset != 0xFFFF:
-                brr.decode(sample_offset)
-                loopoint = int(((loop_offset - sample_offset) / 9) * 16)
+    def extract_samples(self):
+        for track_id in range(64):
+            sample = self.spc700.dsp.sample_2_wav(track_id)
+            if sample is not None and sample != b'\0':
                 path = os.path.join("test", self.id666.game_title, self.id666.song_title)
                 os.makedirs(path, exist_ok=True)
                 filename = os.path.join(path,"sample_{:02d}.wav".format(track_id))
                 with open(filename,'wb') as f:
-                    f.write(brr.to_wave(loopoint))
-            sample_offset,loop_offset = unpack("<HH",self.spc700.RAM[offset:offset+4])
-            offset +=4
-            track_id += 1
+                    f.write(sample)
 
     def __repr__(self):
-        result = "{}\n{}\n{}\n{}".format(
+        result = "{}\n{}\n{}".format(
             self.header,
             str(self.id666),
-            str(self.spc700),
-            str(self.dsp)
+            str(self.spc700)
         )
         return result

@@ -1,9 +1,11 @@
 from json import load
 from struct import unpack
 from script import Script, DecodedInstruction
+from dsp import DSP
+
 
 class SPC700:
-    def __init__(self, reg_bytes=None, ram=None):
+    def __init__(self, reg_bytes=None, ram=None, dspreg_bytes=None):
         with open("spc700_instructions.json","r") as f:
             self.__instructions = load(f)
         self.PC = 0x0200
@@ -15,6 +17,7 @@ class SPC700:
         if reg_bytes is not None:
             self.load_from_bytes(reg_bytes)
         self.RAM = bytearray(0x10000) if ram is None else ram
+        self.dsp = None if dspreg_bytes is None else DSP(self.RAM, dspreg_bytes)
 
     def load_from_bytes(self, reg_bytes):
         fmt = "HBBBHB"
@@ -41,11 +44,12 @@ class SPC700:
 
     def __repr__(self) -> str:
         result =  "+---------------------------------------+\n"
-        result += "+            SPC700 REGISTER            +\n"
+        result += "+            SPC700 REGISTERS           +\n"
         result += "+---------------------------------------+\n"
         result += "|  PC  |  A |  X |  Y |  SP  |    PSW   |\n"
         result += "+---------------------------------------+\n"
         fmt =  "+ {:04X} | {:02X} | {:02X} | {:02X} | {:04X} | {:08b} |\n"
         result += fmt.format(self.PC,self.A,self.X, self.Y, self.PSW, self.SP)
         result += "+---------------------------------------+\n"
+        result += str(self.dsp)
         return result

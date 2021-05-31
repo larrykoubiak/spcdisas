@@ -17,7 +17,7 @@ def main():
     spcfile = SPCFile(args.spcfile)
     print(spcfile)
     spcfile.spc700.disassemble(args.outputfile,args.pc,args.stop, not args.rel, not args.hex, not args.addr)
-    spcfile.extract_samples(0x1900)
+    spcfile.extract_samples()
 
 if __name__ == '__main__':
     main()
