@@ -1,0 +1,97 @@
+{
+    "0x01": {
+        "description": "Song Name",
+        "type": "string",
+        "unpack": "{}s"
+    },
+    "0x02": {
+        "description": "Game Name",
+        "type": "string",
+        "unpack": "{}s"
+    },
+    "0x03": {
+        "description": "Artist Name",
+        "type": "string",
+        "unpack": "{}s"
+    },
+    "0x04": {
+        "description": "Dumper Name",
+        "type": "string",
+        "unpack": "{}s"
+    },
+    "0x05": {
+        "description": "Dump Date",
+        "type": "integer",
+        "unpack": "<I"
+    },
+    "0x06": {
+        "description": "Emulator",
+        "type": "data",
+        "unpack": "bx"
+    },
+    "0x07": {
+        "description": "Comments",
+        "type": "string",
+        "unpack": "{}s"
+    },
+    "0x10": {
+        "description": "Official Sountrack Title",
+        "type": "string",
+        "unpack": "{}s"
+    },
+    "0x11": {
+        "description": "OST Disc",
+        "type": "data",
+        "unpack": "bx"
+    },
+    "0x12": {
+        "description": "OST Track",
+        "type": "data",
+        "unpack": "xb"
+    },
+    "0x13": {
+        "description": "Publisher Name",
+        "type": "string",
+        "unpack": "{}s"
+    },
+    "0x14": {
+        "description": "Copyright Year",
+        "type": "data",
+        "unpack": "H"
+    },
+    "0x30": {
+        "description": "Introduction Length",
+        "type": "integer",
+        "unpack": "<I"
+    },
+    "0x31": {
+        "description": "Loop Length",
+        "type": "integer",
+        "unpack": "<I"
+    },
+    "0x32": {
+        "description": "End Length",
+        "type": "integer",
+        "unpack": "<I"
+    },
+    "0x33": {
+        "description": "Fade Length",
+        "type": "integer",
+        "unpack": "<I"
+    },
+    "0x34": {
+        "description": "Muted Voices",
+        "type": "data",
+        "unpack": "bx"
+    },
+    "0x35": {
+        "description": "Number of times to loop",
+        "type": "data",
+        "unpack": "bx"
+    },
+    "0x36": {
+        "description": "Mixing (preamp) level",
+        "type": "data",
+        "unpack": "bx"
+    }
+}

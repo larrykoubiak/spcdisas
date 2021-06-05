@@ -4,16 +4,16 @@ from struct import unpack
 
 class DSP:
     def __init__(self, ram=None, regbytes=None):
-        with open("dsp_registers.json","r") as f:
+        with open("config/dsp_registers.json","r") as f:
             self.registers = [0] * 128
             self.__regnames = load(f)
             self.namedregisters = {}
             if regbytes is not None:
-                self.load_from_bytes(regbytes)
+                self.__parsebytes(regbytes)
             self.RAM = ram
 
-    def load_from_bytes(self, regbytes):
-        for i in range(128):
+    def __parsebytes(self, regbytes):
+        for i in range(0x80):
             hexreg = "{:02X}".format(i)
             self.registers[i] = regbytes[i]
             if hexreg in self.__regnames:

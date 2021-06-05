@@ -1,12 +1,12 @@
 from json import load
 from struct import unpack
-from script import Script, DecodedInstruction
+from script import DecodedInstruction
 from dsp import DSP
 
 
 class SPC700:
-    def __init__(self, reg_bytes=None, ram=None, dspreg_bytes=None):
-        with open("spc700_instructions.json","r") as f:
+    def __init__(self, reg_bytes=None, ram=None, dspreg_bytes=None, ipl_ram=None):
+        with open("config/spc700_instructions.json","r") as f:
             self.__instructions = load(f)
         self.PC = 0x0200
         self.A = 0x00
@@ -15,21 +15,14 @@ class SPC700:
         self.SP = 0x01EF
         self.PSW = 0x00
         if reg_bytes is not None:
-            self.load_from_bytes(reg_bytes)
+            self.__parsebytes(reg_bytes)
         self.RAM = bytearray(0x10000) if ram is None else ram
+        self.IPLRAM = bytearray(0x40) if ipl_ram is None else ipl_ram
         self.dsp = None if dspreg_bytes is None else DSP(self.RAM, dspreg_bytes)
 
-    def load_from_bytes(self, reg_bytes):
+    def __parsebytes(self, reg_bytes):
         fmt = "HBBBHB"
         self.PC, self.A, self.X, self.Y, self.SP, self.PSW = unpack(fmt, reg_bytes)
-
-    def disassemble(self, targetfile, pc, stop, rel, hex, addr):
-        self.PC = int(pc, 16)
-        script = Script()
-        while self.PC < (0x10000 if stop=="eof" else int(stop,16)):
-            decinc = self.decodePC(rel)
-            script.instructions[decinc.offset] = decinc
-        script.export(targetfile, addr, hex)
 
     def decodePC(self, resolve_relative):
         opcode = self.RAM[self.PC]
