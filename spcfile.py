@@ -30,12 +30,12 @@ class SPCFile:
         f.close()
 
     def disassemble(self, pc, stop, rel, hex, addr):
-        self.PC = int(pc, 16)
+        self.spc700.PC = int(pc, 16)
         script = Script()
         while self.spc700.PC < (0x10000 if stop=="eof" else int(stop,16)):
-            decinc = self.spc700.decodePC(rel)
+            decinc = self.spc700.decodePC()
             script.instructions[decinc.offset] = decinc
-        script.export(self.path.replace('.spc','.s'), addr, hex)
+        script.export(self.path.replace('.spc','.s'), addr, hex, rel)
 
     def extract_samples(self):
         for track_id in range(64):

@@ -15,8 +15,7 @@
         ],
         "bytes": 2,
         "format": "set0  ${0:02x}",
-        "opcode": "02",
-        "unpack": "B"
+        "opcode": "02"
     },
     {
         "args": [
@@ -25,8 +24,7 @@
         ],
         "bytes": 3,
         "format": "bbs0  ${0:02x},${1:04x}",
-        "opcode": "03",
-        "unpack": "Bb"
+        "opcode": "03"
     },
     {
         "args": [
@@ -34,8 +32,7 @@
         ],
         "bytes": 2,
         "format": "or    a,${0:02x}",
-        "opcode": "04",
-        "unpack": "B"
+        "opcode": "04"
     },
     {
         "args": [
@@ -43,8 +40,7 @@
         ],
         "bytes": 3,
         "format": "or    a,${0:04x}",
-        "opcode": "05",
-        "unpack": "H"
+        "opcode": "05"
     },
     {
         "bytes": 1,
@@ -57,8 +53,7 @@
         ],
         "bytes": 2,
         "format": "or    a,(${0:02x}+x)",
-        "opcode": "07",
-        "unpack": "B"
+        "opcode": "07"
     },
     {
         "args": [
@@ -66,8 +61,7 @@
         ],
         "bytes": 2,
         "format": "or    a,#${0:02x}",
-        "opcode": "08",
-        "unpack": "B"
+        "opcode": "08"
     },
     {
         "args": [
@@ -76,8 +70,7 @@
         ],
         "bytes": 3,
         "format": "or    (${1:02x}),(${0:02x})",
-        "opcode": "09",
-        "unpack": "BB"
+        "opcode": "09"
     },
     {
         "args": [
@@ -85,8 +78,7 @@
         ],
         "bytes": 3,
         "format": "or1   c,${0:04x},{1:x}",
-        "opcode": "0a",
-        "unpack": "H"
+        "opcode": "0a"
     },
     {
         "args": [
@@ -94,8 +86,7 @@
         ],
         "bytes": 2,
         "format": "asl   ${0:02x}",
-        "opcode": "0b",
-        "unpack": "B"
+        "opcode": "0b"
     },
     {
         "args": [
@@ -103,8 +94,7 @@
         ],
         "bytes": 3,
         "format": "asl   ${0:04x}",
-        "opcode": "0c",
-        "unpack": "H"
+        "opcode": "0c"
     },
     {
         "bytes": 1,
@@ -117,8 +107,7 @@
         ],
         "bytes": 3,
         "format": "tset1 ${0:04x}",
-        "opcode": "0e",
-        "unpack": "H"
+        "opcode": "0e"
     },
     {
         "bytes": 1,
@@ -131,8 +120,7 @@
         ],
         "bytes": 2,
         "format": "bpl   ${0:04x}",
-        "opcode": "10",
-        "unpack": "b"
+        "opcode": "10"
     },
     {
         "bytes": 1,
@@ -145,8 +133,7 @@
         ],
         "bytes": 2,
         "format": "clr0  ${0:02x}",
-        "opcode": "12",
-        "unpack": "B"
+        "opcode": "12"
     },
     {
         "args": [
@@ -155,8 +142,7 @@
         ],
         "bytes": 3,
         "format": "bbc0  ${0:02x},${1:04x}",
-        "opcode": "13",
-        "unpack": "Bb"
+        "opcode": "13"
     },
     {
         "args": [
@@ -164,8 +150,7 @@
         ],
         "bytes": 2,
         "format": "or    a,${0:02x}+x",
-        "opcode": "14",
-        "unpack": "B"
+        "opcode": "14"
     },
     {
         "args": [
@@ -173,8 +158,7 @@
         ],
         "bytes": 3,
         "format": "or    a,${0:04x}+x",
-        "opcode": "15",
-        "unpack": "H"
+        "opcode": "15"
     },
     {
         "args": [
@@ -182,8 +166,7 @@
         ],
         "bytes": 3,
         "format": "or    a,${0:04x}+y",
-        "opcode": "16",
-        "unpack": "H"
+        "opcode": "16"
     },
     {
         "args": [
@@ -191,8 +174,7 @@
         ],
         "bytes": 2,
         "format": "or    a,(${0:02x})+y",
-        "opcode": "17",
-        "unpack": "B"
+        "opcode": "17"
     },
     {
         "args": [
@@ -201,8 +183,7 @@
         ],
         "bytes": 3,
         "format": "or    ${1:02x},#${0:02x}",
-        "opcode": "18",
-        "unpack": "BB"
+        "opcode": "18"
     },
     {
         "bytes": 1,
@@ -215,8 +196,7 @@
         ],
         "bytes": 2,
         "format": "decw  ${0:02x}",
-        "opcode": "1a",
-        "unpack": "B"
+        "opcode": "1a"
     },
     {
         "args": [
@@ -224,8 +204,7 @@
         ],
         "bytes": 2,
         "format": "asl   ${0:02x}+x",
-        "opcode": "1b",
-        "unpack": "B"
+        "opcode": "1b"
     },
     {
         "bytes": 1,
@@ -243,8 +222,7 @@
         ],
         "bytes": 3,
         "format": "cmp   x,${0:04x}",
-        "opcode": "1e",
-        "unpack": "H"
+        "opcode": "1e"
     },
     {
         "args": [
@@ -252,8 +230,7 @@
         ],
         "bytes": 3,
         "format": "jmp   (${0:04x}+x)",
-        "opcode": "1f",
-        "unpack": "H"
+        "opcode": "1f"
     },
     {
         "bytes": 1,
@@ -271,8 +248,7 @@
         ],
         "bytes": 2,
         "format": "set1  ${0:02x}",
-        "opcode": "22",
-        "unpack": "B"
+        "opcode": "22"
     },
     {
         "args": [
@@ -281,8 +257,7 @@
         ],
         "bytes": 3,
         "format": "bbs1  ${0:02x},${1:04x}",
-        "opcode": "23",
-        "unpack": "Bb"
+        "opcode": "23"
     },
     {
         "args": [
@@ -290,8 +265,7 @@
         ],
         "bytes": 2,
         "format": "and   a,${0:02x}",
-        "opcode": "24",
-        "unpack": "B"
+        "opcode": "24"
     },
     {
         "args": [
@@ -299,8 +273,7 @@
         ],
         "bytes": 3,
         "format": "and   a,${0:04x}",
-        "opcode": "25",
-        "unpack": "H"
+        "opcode": "25"
     },
     {
         "bytes": 1,
@@ -313,8 +286,7 @@
         ],
         "bytes": 2,
         "format": "and   a,(${0:02x}+x)",
-        "opcode": "27",
-        "unpack": "B"
+        "opcode": "27"
     },
     {
         "args": [
@@ -322,8 +294,7 @@
         ],
         "bytes": 2,
         "format": "and   a,#${0:02x}",
-        "opcode": "28",
-        "unpack": "B"
+        "opcode": "28"
     },
     {
         "args": [
@@ -332,8 +303,7 @@
         ],
         "bytes": 3,
         "format": "and   (${1:02x}),(${0:02x})",
-        "opcode": "29",
-        "unpack": "BB"
+        "opcode": "29"
     },
     {
         "args": [
@@ -341,8 +311,7 @@
         ],
         "bytes": 3,
         "format": "or1   c,!(${0:04x},{1:x})",
-        "opcode": "2a",
-        "unpack": "H"
+        "opcode": "2a"
     },
     {
         "args": [
@@ -350,8 +319,7 @@
         ],
         "bytes": 2,
         "format": "rol   ${0:02x}",
-        "opcode": "2b",
-        "unpack": "B"
+        "opcode": "2b"
     },
     {
         "args": [
@@ -359,8 +327,7 @@
         ],
         "bytes": 3,
         "format": "rol   ${0:04x}",
-        "opcode": "2c",
-        "unpack": "H"
+        "opcode": "2c"
     },
     {
         "bytes": 1,
@@ -374,8 +341,7 @@
         ],
         "bytes": 3,
         "format": "cbne  ${0:02x},${1:04x}",
-        "opcode": "2e",
-        "unpack": "Bb"
+        "opcode": "2e"
     },
     {
         "args": [
@@ -383,8 +349,7 @@
         ],
         "bytes": 2,
         "format": "bra   ${0:04x}",
-        "opcode": "2f",
-        "unpack": "b"
+        "opcode": "2f"
     },
     {
         "args": [
@@ -392,8 +357,7 @@
         ],
         "bytes": 2,
         "format": "bmi   ${0:04x}",
-        "opcode": "30",
-        "unpack": "b"
+        "opcode": "30"
     },
     {
         "bytes": 1,
@@ -406,8 +370,7 @@
         ],
         "bytes": 2,
         "format": "clr1  ${0:02x}",
-        "opcode": "32",
-        "unpack": "B"
+        "opcode": "32"
     },
     {
         "args": [
@@ -416,8 +379,7 @@
         ],
         "bytes": 3,
         "format": "bbc1  ${0:02x},${1:04x}",
-        "opcode": "33",
-        "unpack": "Bb"
+        "opcode": "33"
     },
     {
         "args": [
@@ -425,8 +387,7 @@
         ],
         "bytes": 2,
         "format": "and   a,${0:02x}+x",
-        "opcode": "34",
-        "unpack": "B"
+        "opcode": "34"
     },
     {
         "args": [
@@ -434,8 +395,7 @@
         ],
         "bytes": 3,
         "format": "and   a,${0:04x}+x",
-        "opcode": "35",
-        "unpack": "H"
+        "opcode": "35"
     },
     {
         "args": [
@@ -443,8 +403,7 @@
         ],
         "bytes": 3,
         "format": "and   a,${0:04x}+y",
-        "opcode": "36",
-        "unpack": "H"
+        "opcode": "36"
     },
     {
         "args": [
@@ -452,8 +411,7 @@
         ],
         "bytes": 2,
         "format": "and   a,(${0:02x})+y",
-        "opcode": "37",
-        "unpack": "B"
+        "opcode": "37"
     },
     {
         "args": [
@@ -462,8 +420,7 @@
         ],
         "bytes": 3,
         "format": "and   ${1:02x},#${0:02x}",
-        "opcode": "38",
-        "unpack": "BB"
+        "opcode": "38"
     },
     {
         "bytes": 1,
@@ -476,8 +433,7 @@
         ],
         "bytes": 2,
         "format": "incw  ${0:02x}",
-        "opcode": "3a",
-        "unpack": "B"
+        "opcode": "3a"
     },
     {
         "args": [
@@ -485,8 +441,7 @@
         ],
         "bytes": 2,
         "format": "rol   ${0:02x}+x",
-        "opcode": "3b",
-        "unpack": "B"
+        "opcode": "3b"
     },
     {
         "bytes": 1,
@@ -504,8 +459,7 @@
         ],
         "bytes": 2,
         "format": "cmp   x,${0:02x}",
-        "opcode": "3e",
-        "unpack": "B"
+        "opcode": "3e"
     },
     {
         "args": [
@@ -513,8 +467,7 @@
         ],
         "bytes": 3,
         "format": "call  ${0:04x}",
-        "opcode": "3f",
-        "unpack": "H"
+        "opcode": "3f"
     },
     {
         "bytes": 1,
@@ -532,8 +485,7 @@
         ],
         "bytes": 2,
         "format": "set2  ${0:02x}",
-        "opcode": "42",
-        "unpack": "B"
+        "opcode": "42"
     },
     {
         "args": [
@@ -542,8 +494,7 @@
         ],
         "bytes": 3,
         "format": "bbs2  ${0:02x},${1:04x}",
-        "opcode": "43",
-        "unpack": "Bb"
+        "opcode": "43"
     },
     {
         "args": [
@@ -551,8 +502,7 @@
         ],
         "bytes": 2,
         "format": "eor   a,${0:02x}",
-        "opcode": "44",
-        "unpack": "B"
+        "opcode": "44"
     },
     {
         "args": [
@@ -560,8 +510,7 @@
         ],
         "bytes": 3,
         "format": "eor   a,${0:04x}",
-        "opcode": "45",
-        "unpack": "H"
+        "opcode": "45"
     },
     {
         "bytes": 1,
@@ -574,8 +523,7 @@
         ],
         "bytes": 2,
         "format": "eor   a,(${0:02x}+x)",
-        "opcode": "47",
-        "unpack": "B"
+        "opcode": "47"
     },
     {
         "args": [
@@ -583,8 +531,7 @@
         ],
         "bytes": 2,
         "format": "eor   a,#${0:02x}",
-        "opcode": "48",
-        "unpack": "B"
+        "opcode": "48"
     },
     {
         "args": [
@@ -593,8 +540,7 @@
         ],
         "bytes": 3,
         "format": "eor   (${1:02x}),(${0:02x})",
-        "opcode": "49",
-        "unpack": "BB"
+        "opcode": "49"
     },
     {
         "args": [
@@ -602,8 +548,7 @@
         ],
         "bytes": 3,
         "format": "and1  c,${0:04x},{1:x}",
-        "opcode": "4a",
-        "unpack": "H"
+        "opcode": "4a"
     },
     {
         "args": [
@@ -611,8 +556,7 @@
         ],
         "bytes": 2,
         "format": "lsr   ${0:02x}",
-        "opcode": "4b",
-        "unpack": "B"
+        "opcode": "4b"
     },
     {
         "args": [
@@ -620,8 +564,7 @@
         ],
         "bytes": 3,
         "format": "lsr   ${0:04x}",
-        "opcode": "4c",
-        "unpack": "H"
+        "opcode": "4c"
     },
     {
         "bytes": 1,
@@ -634,8 +577,7 @@
         ],
         "bytes": 3,
         "format": "tclr1 ${0:04x}",
-        "opcode": "4e",
-        "unpack": "H"
+        "opcode": "4e"
     },
     {
         "args": [
@@ -643,8 +585,7 @@
         ],
         "bytes": 2,
         "format": "pcall ${0:02x}",
-        "opcode": "4f",
-        "unpack": "B"
+        "opcode": "4f"
     },
     {
         "args": [
@@ -652,8 +593,7 @@
         ],
         "bytes": 2,
         "format": "bvc   ${0:04x}",
-        "opcode": "50",
-        "unpack": "b"
+        "opcode": "50"
     },
     {
         "bytes": 1,
@@ -666,8 +606,7 @@
         ],
         "bytes": 2,
         "format": "clr2  ${0:02x}",
-        "opcode": "52",
-        "unpack": "B"
+        "opcode": "52"
     },
     {
         "args": [
@@ -676,8 +615,7 @@
         ],
         "bytes": 3,
         "format": "bbc2  ${0:02x},${1:04x}",
-        "opcode": "53",
-        "unpack": "Bb"
+        "opcode": "53"
     },
     {
         "args": [
@@ -685,8 +623,7 @@
         ],
         "bytes": 2,
         "format": "eor   a,${0:02x}+x",
-        "opcode": "54",
-        "unpack": "B"
+        "opcode": "54"
     },
     {
         "args": [
@@ -694,8 +631,7 @@
         ],
         "bytes": 3,
         "format": "eor   a,${0:04x}+x",
-        "opcode": "55",
-        "unpack": "H"
+        "opcode": "55"
     },
     {
         "args": [
@@ -703,8 +639,7 @@
         ],
         "bytes": 3,
         "format": "eor   a,${0:04x}+y",
-        "opcode": "56",
-        "unpack": "H"
+        "opcode": "56"
     },
     {
         "args": [
@@ -712,8 +647,7 @@
         ],
         "bytes": 2,
         "format": "eor   a,(${0:02x})+y",
-        "opcode": "57",
-        "unpack": "B"
+        "opcode": "57"
     },
     {
         "args": [
@@ -722,8 +656,7 @@
         ],
         "bytes": 3,
         "format": "eor   ${1:02x},#${0:02x}",
-        "opcode": "58",
-        "unpack": "BB"
+        "opcode": "58"
     },
     {
         "bytes": 1,
@@ -736,8 +669,7 @@
         ],
         "bytes": 2,
         "format": "cmpw  ya,${0:02x}",
-        "opcode": "5a",
-        "unpack": "B"
+        "opcode": "5a"
     },
     {
         "args": [
@@ -745,8 +677,7 @@
         ],
         "bytes": 2,
         "format": "lsr   ${0:02x}+x",
-        "opcode": "5b",
-        "unpack": "B"
+        "opcode": "5b"
     },
     {
         "bytes": 1,
@@ -764,8 +695,7 @@
         ],
         "bytes": 3,
         "format": "cmp   y,${0:04x}",
-        "opcode": "5e",
-        "unpack": "H"
+        "opcode": "5e"
     },
     {
         "args": [
@@ -773,8 +703,7 @@
         ],
         "bytes": 3,
         "format": "jmp   ${0:04x}",
-        "opcode": "5f",
-        "unpack": "H"
+        "opcode": "5f"
     },
     {
         "bytes": 1,
@@ -792,8 +721,7 @@
         ],
         "bytes": 2,
         "format": "set3  ${0:02x}",
-        "opcode": "62",
-        "unpack": "B"
+        "opcode": "62"
     },
     {
         "args": [
@@ -802,8 +730,7 @@
         ],
         "bytes": 3,
         "format": "bbs3  ${0:02x},${1:04x}",
-        "opcode": "63",
-        "unpack": "Bb"
+        "opcode": "63"
     },
     {
         "args": [
@@ -811,8 +738,7 @@
         ],
         "bytes": 2,
         "format": "cmp   a,${0:02x}",
-        "opcode": "64",
-        "unpack": "B"
+        "opcode": "64"
     },
     {
         "args": [
@@ -820,8 +746,7 @@
         ],
         "bytes": 3,
         "format": "cmp   a,${0:04x}",
-        "opcode": "65",
-        "unpack": "H"
+        "opcode": "65"
     },
     {
         "bytes": 1,
@@ -834,8 +759,7 @@
         ],
         "bytes": 2,
         "format": "cmp   a,(${0:02x}+x)",
-        "opcode": "67",
-        "unpack": "B"
+        "opcode": "67"
     },
     {
         "args": [
@@ -843,8 +767,7 @@
         ],
         "bytes": 2,
         "format": "cmp   a,#${0:02x}",
-        "opcode": "68",
-        "unpack": "B"
+        "opcode": "68"
     },
     {
         "args": [
@@ -853,8 +776,7 @@
         ],
         "bytes": 3,
         "format": "cmp   (${1:02x}),(${0:02x})",
-        "opcode": "69",
-        "unpack": "BB"
+        "opcode": "69"
     },
     {
         "args": [
@@ -862,8 +784,7 @@
         ],
         "bytes": 3,
         "format": "and1  c,!(${0:04x},{1:x})",
-        "opcode": "6a",
-        "unpack": "H"
+        "opcode": "6a"
     },
     {
         "args": [
@@ -871,8 +792,7 @@
         ],
         "bytes": 2,
         "format": "ror   ${0:02x}",
-        "opcode": "6b",
-        "unpack": "B"
+        "opcode": "6b"
     },
     {
         "args": [
@@ -880,8 +800,7 @@
         ],
         "bytes": 3,
         "format": "ror   ${0:04x}",
-        "opcode": "6c",
-        "unpack": "H"
+        "opcode": "6c"
     },
     {
         "bytes": 1,
@@ -895,8 +814,7 @@
         ],
         "bytes": 3,
         "format": "dbnz  ${0:02x},${1:04x}",
-        "opcode": "6e",
-        "unpack": "Bb"
+        "opcode": "6e"
     },
     {
         "bytes": 1,
@@ -909,8 +827,7 @@
         ],
         "bytes": 2,
         "format": "bvs   ${0:04x}",
-        "opcode": "70",
-        "unpack": "b"
+        "opcode": "70"
     },
     {
         "bytes": 1,
@@ -923,8 +840,7 @@
         ],
         "bytes": 2,
         "format": "clr3  ${0:02x}",
-        "opcode": "72",
-        "unpack": "B"
+        "opcode": "72"
     },
     {
         "args": [
@@ -933,8 +849,7 @@
         ],
         "bytes": 3,
         "format": "bbc3  ${0:02x},${1:04x}",
-        "opcode": "73",
-        "unpack": "Bb"
+        "opcode": "73"
     },
     {
         "args": [
@@ -942,8 +857,7 @@
         ],
         "bytes": 2,
         "format": "cmp   a,${0:02x}+x",
-        "opcode": "74",
-        "unpack": "B"
+        "opcode": "74"
     },
     {
         "args": [
@@ -951,8 +865,7 @@
         ],
         "bytes": 3,
         "format": "cmp   a,${0:04x}+x",
-        "opcode": "75",
-        "unpack": "H"
+        "opcode": "75"
     },
     {
         "args": [
@@ -960,8 +873,7 @@
         ],
         "bytes": 3,
         "format": "cmp   a,${0:04x}+y",
-        "opcode": "76",
-        "unpack": "H"
+        "opcode": "76"
     },
     {
         "args": [
@@ -969,8 +881,7 @@
         ],
         "bytes": 2,
         "format": "cmp   a,(${0:02x})+y",
-        "opcode": "77",
-        "unpack": "B"
+        "opcode": "77"
     },
     {
         "args": [
@@ -979,8 +890,7 @@
         ],
         "bytes": 3,
         "format": "cmp   ${1:02x},#${0:02x}",
-        "opcode": "78",
-        "unpack": "BB"
+        "opcode": "78"
     },
     {
         "bytes": 1,
@@ -993,8 +903,7 @@
         ],
         "bytes": 2,
         "format": "addw  ya,${0:02x}",
-        "opcode": "7a",
-        "unpack": "B"
+        "opcode": "7a"
     },
     {
         "args": [
@@ -1002,8 +911,7 @@
         ],
         "bytes": 2,
         "format": "ror   ${0:02x}+x",
-        "opcode": "7b",
-        "unpack": "B"
+        "opcode": "7b"
     },
     {
         "bytes": 1,
@@ -1021,8 +929,7 @@
         ],
         "bytes": 2,
         "format": "cmp   y,${0:02x}",
-        "opcode": "7e",
-        "unpack": "B"
+        "opcode": "7e"
     },
     {
         "bytes": 1,
@@ -1045,8 +952,7 @@
         ],
         "bytes": 2,
         "format": "set4  ${0:02x}",
-        "opcode": "82",
-        "unpack": "B"
+        "opcode": "82"
     },
     {
         "args": [
@@ -1055,8 +961,7 @@
         ],
         "bytes": 3,
         "format": "bbs4  ${0:02x},${1:04x}",
-        "opcode": "83",
-        "unpack": "Bb"
+        "opcode": "83"
     },
     {
         "args": [
@@ -1064,8 +969,7 @@
         ],
         "bytes": 2,
         "format": "adc   a,${0:02x}",
-        "opcode": "84",
-        "unpack": "B"
+        "opcode": "84"
     },
     {
         "args": [
@@ -1073,8 +977,7 @@
         ],
         "bytes": 3,
         "format": "adc   a,${0:04x}",
-        "opcode": "85",
-        "unpack": "H"
+        "opcode": "85"
     },
     {
         "bytes": 1,
@@ -1087,8 +990,7 @@
         ],
         "bytes": 2,
         "format": "adc   a,(${0:02x}+x)",
-        "opcode": "87",
-        "unpack": "B"
+        "opcode": "87"
     },
     {
         "args": [
@@ -1096,8 +998,7 @@
         ],
         "bytes": 2,
         "format": "adc   a,#${0:02x}",
-        "opcode": "88",
-        "unpack": "B"
+        "opcode": "88"
     },
     {
         "args": [
@@ -1106,8 +1007,7 @@
         ],
         "bytes": 3,
         "format": "adc   (${1:02x}),(${0:02x})",
-        "opcode": "89",
-        "unpack": "BB"
+        "opcode": "89"
     },
     {
         "args": [
@@ -1115,8 +1015,7 @@
         ],
         "bytes": 3,
         "format": "eor1  c,${0:04x},{1:x}",
-        "opcode": "8a",
-        "unpack": "H"
+        "opcode": "8a"
     },
     {
         "args": [
@@ -1124,8 +1023,7 @@
         ],
         "bytes": 2,
         "format": "dec   ${0:02x}",
-        "opcode": "8b",
-        "unpack": "B"
+        "opcode": "8b"
     },
     {
         "args": [
@@ -1133,8 +1031,7 @@
         ],
         "bytes": 3,
         "format": "dec   ${0:04x}",
-        "opcode": "8c",
-        "unpack": "H"
+        "opcode": "8c"
     },
     {
         "args": [
@@ -1142,8 +1039,7 @@
         ],
         "bytes": 2,
         "format": "mov   y,#${0:02x}",
-        "opcode": "8d",
-        "unpack": "B"
+        "opcode": "8d"
     },
     {
         "bytes": 1,
@@ -1157,8 +1053,7 @@
         ],
         "bytes": 3,
         "format": "mov   ${1:02x},#${0:02x}",
-        "opcode": "8f",
-        "unpack": "BB"
+        "opcode": "8f"
     },
     {
         "args": [
@@ -1166,8 +1061,7 @@
         ],
         "bytes": 2,
         "format": "bcc   ${0:04x}",
-        "opcode": "90",
-        "unpack": "b"
+        "opcode": "90"
     },
     {
         "bytes": 1,
@@ -1180,8 +1074,7 @@
         ],
         "bytes": 2,
         "format": "clr4  ${0:02x}",
-        "opcode": "92",
-        "unpack": "B"
+        "opcode": "92"
     },
     {
         "args": [
@@ -1190,8 +1083,7 @@
         ],
         "bytes": 3,
         "format": "bbc4  ${0:02x},${1:04x}",
-        "opcode": "93",
-        "unpack": "Bb"
+        "opcode": "93"
     },
     {
         "args": [
@@ -1199,8 +1091,7 @@
         ],
         "bytes": 2,
         "format": "adc   a,${0:02x}+x",
-        "opcode": "94",
-        "unpack": "B"
+        "opcode": "94"
     },
     {
         "args": [
@@ -1208,8 +1099,7 @@
         ],
         "bytes": 3,
         "format": "adc   a,${0:04x}+x",
-        "opcode": "95",
-        "unpack": "H"
+        "opcode": "95"
     },
     {
         "args": [
@@ -1217,8 +1107,7 @@
         ],
         "bytes": 3,
         "format": "adc   a,${0:04x}+y",
-        "opcode": "96",
-        "unpack": "H"
+        "opcode": "96"
     },
     {
         "args": [
@@ -1226,8 +1115,7 @@
         ],
         "bytes": 2,
         "format": "adc   a,(${0:02x})+y",
-        "opcode": "97",
-        "unpack": "B"
+        "opcode": "97"
     },
     {
         "args": [
@@ -1236,8 +1124,7 @@
         ],
         "bytes": 3,
         "format": "adc   ${1:02x},#${0:02x}",
-        "opcode": "98",
-        "unpack": "BB"
+        "opcode": "98"
     },
     {
         "bytes": 1,
@@ -1250,8 +1137,7 @@
         ],
         "bytes": 2,
         "format": "subw  ya,${0:02x}",
-        "opcode": "9a",
-        "unpack": "B"
+        "opcode": "9a"
     },
     {
         "args": [
@@ -1259,8 +1145,7 @@
         ],
         "bytes": 2,
         "format": "dec   ${0:02x}+x",
-        "opcode": "9b",
-        "unpack": "B"
+        "opcode": "9b"
     },
     {
         "bytes": 1,
@@ -1298,8 +1183,7 @@
         ],
         "bytes": 2,
         "format": "set5  ${0:02x}",
-        "opcode": "a2",
-        "unpack": "B"
+        "opcode": "a2"
     },
     {
         "args": [
@@ -1308,8 +1192,7 @@
         ],
         "bytes": 3,
         "format": "bbs5  ${0:02x},${1:04x}",
-        "opcode": "a3",
-        "unpack": "Bb"
+        "opcode": "a3"
     },
     {
         "args": [
@@ -1317,8 +1200,7 @@
         ],
         "bytes": 2,
         "format": "sbc   a,${0:02x}",
-        "opcode": "a4",
-        "unpack": "B"
+        "opcode": "a4"
     },
     {
         "args": [
@@ -1326,8 +1208,7 @@
         ],
         "bytes": 3,
         "format": "sbc   a,${0:04x}",
-        "opcode": "a5",
-        "unpack": "H"
+        "opcode": "a5"
     },
     {
         "bytes": 1,
@@ -1340,8 +1221,7 @@
         ],
         "bytes": 2,
         "format": "sbc   a,(${0:02x}+x)",
-        "opcode": "a7",
-        "unpack": "B"
+        "opcode": "a7"
     },
     {
         "args": [
@@ -1349,8 +1229,7 @@
         ],
         "bytes": 2,
         "format": "sbc   a,#${0:02x}",
-        "opcode": "a8",
-        "unpack": "B"
+        "opcode": "a8"
     },
     {
         "args": [
@@ -1359,8 +1238,7 @@
         ],
         "bytes": 3,
         "format": "sbc   (${1:02x}),(${0:02x})",
-        "opcode": "a9",
-        "unpack": "BB"
+        "opcode": "a9"
     },
     {
         "args": [
@@ -1368,8 +1246,7 @@
         ],
         "bytes": 3,
         "format": "mov1  c,${0:04x},{1:x}",
-        "opcode": "aa",
-        "unpack": "H"
+        "opcode": "aa"
     },
     {
         "args": [
@@ -1377,8 +1254,7 @@
         ],
         "bytes": 2,
         "format": "inc   ${0:02x}",
-        "opcode": "ab",
-        "unpack": "B"
+        "opcode": "ab"
     },
     {
         "args": [
@@ -1386,8 +1262,7 @@
         ],
         "bytes": 3,
         "format": "inc   ${0:04x}",
-        "opcode": "ac",
-        "unpack": "H"
+        "opcode": "ac"
     },
     {
         "args": [
@@ -1395,8 +1270,7 @@
         ],
         "bytes": 2,
         "format": "cmp   y,#${0:02x}",
-        "opcode": "ad",
-        "unpack": "B"
+        "opcode": "ad"
     },
     {
         "bytes": 1,
@@ -1414,8 +1288,7 @@
         ],
         "bytes": 2,
         "format": "bcs   ${0:04x}",
-        "opcode": "b0",
-        "unpack": "b"
+        "opcode": "b0"
     },
     {
         "bytes": 1,
@@ -1428,8 +1301,7 @@
         ],
         "bytes": 2,
         "format": "clr5  ${0:02x}",
-        "opcode": "b2",
-        "unpack": "B"
+        "opcode": "b2"
     },
     {
         "args": [
@@ -1438,8 +1310,7 @@
         ],
         "bytes": 3,
         "format": "bbc5  ${0:02x},${1:04x}",
-        "opcode": "b3",
-        "unpack": "Bb"
+        "opcode": "b3"
     },
     {
         "args": [
@@ -1447,8 +1318,7 @@
         ],
         "bytes": 2,
         "format": "sbc   a,${0:02x}+x",
-        "opcode": "b4",
-        "unpack": "B"
+        "opcode": "b4"
     },
     {
         "args": [
@@ -1456,8 +1326,7 @@
         ],
         "bytes": 3,
         "format": "sbc   a,${0:04x}+x",
-        "opcode": "b5",
-        "unpack": "H"
+        "opcode": "b5"
     },
     {
         "args": [
@@ -1465,8 +1334,7 @@
         ],
         "bytes": 3,
         "format": "sbc   a,${0:04x}+y",
-        "opcode": "b6",
-        "unpack": "H"
+        "opcode": "b6"
     },
     {
         "args": [
@@ -1474,8 +1342,7 @@
         ],
         "bytes": 2,
         "format": "sbc   a,(${0:02x})+y",
-        "opcode": "b7",
-        "unpack": "B"
+        "opcode": "b7"
     },
     {
         "args": [
@@ -1484,8 +1351,7 @@
         ],
         "bytes": 3,
         "format": "sbc   ${1:02x},#${0:02x}",
-        "opcode": "b8",
-        "unpack": "BB"
+        "opcode": "b8"
     },
     {
         "bytes": 1,
@@ -1498,8 +1364,7 @@
         ],
         "bytes": 2,
         "format": "movw  ya,${0:02x}",
-        "opcode": "ba",
-        "unpack": "B"
+        "opcode": "ba"
     },
     {
         "args": [
@@ -1507,8 +1372,7 @@
         ],
         "bytes": 2,
         "format": "inc   ${0:02x}+x",
-        "opcode": "bb",
-        "unpack": "B"
+        "opcode": "bb"
     },
     {
         "bytes": 1,
@@ -1546,8 +1410,7 @@
         ],
         "bytes": 2,
         "format": "set6  ${0:02x}",
-        "opcode": "c2",
-        "unpack": "B"
+        "opcode": "c2"
     },
     {
         "args": [
@@ -1556,8 +1419,7 @@
         ],
         "bytes": 3,
         "format": "bbs6  ${0:02x},${1:04x}",
-        "opcode": "c3",
-        "unpack": "Bb"
+        "opcode": "c3"
     },
     {
         "args": [
@@ -1565,8 +1427,7 @@
         ],
         "bytes": 2,
         "format": "mov   ${0:02x},a",
-        "opcode": "c4",
-        "unpack": "B"
+        "opcode": "c4"
     },
     {
         "args": [
@@ -1574,8 +1435,7 @@
         ],
         "bytes": 3,
         "format": "mov   ${0:04x},a",
-        "opcode": "c5",
-        "unpack": "H"
+        "opcode": "c5"
     },
     {
         "bytes": 1,
@@ -1588,8 +1448,7 @@
         ],
         "bytes": 2,
         "format": "mov   (${0:02x}+x),a",
-        "opcode": "c7",
-        "unpack": "B"
+        "opcode": "c7"
     },
     {
         "args": [
@@ -1597,8 +1456,7 @@
         ],
         "bytes": 2,
         "format": "cmp   x,#${0:02x}",
-        "opcode": "c8",
-        "unpack": "B"
+        "opcode": "c8"
     },
     {
         "args": [
@@ -1606,8 +1464,7 @@
         ],
         "bytes": 3,
         "format": "mov   ${0:04x},x",
-        "opcode": "c9",
-        "unpack": "H"
+        "opcode": "c9"
     },
     {
         "args": [
@@ -1615,8 +1472,7 @@
         ],
         "bytes": 3,
         "format": "mov1  ${0:04x},{1:x},c",
-        "opcode": "ca",
-        "unpack": "H"
+        "opcode": "ca"
     },
     {
         "args": [
@@ -1624,8 +1480,7 @@
         ],
         "bytes": 2,
         "format": "mov   ${0:02x},y",
-        "opcode": "cb",
-        "unpack": "B"
+        "opcode": "cb"
     },
     {
         "args": [
@@ -1633,8 +1488,7 @@
         ],
         "bytes": 3,
         "format": "mov   ${0:04x},y",
-        "opcode": "cc",
-        "unpack": "H"
+        "opcode": "cc"
     },
     {
         "args": [
@@ -1642,8 +1496,7 @@
         ],
         "bytes": 2,
         "format": "mov   x,#${0:02x}",
-        "opcode": "cd",
-        "unpack": "B"
+        "opcode": "cd"
     },
     {
         "bytes": 1,
@@ -1661,8 +1514,7 @@
         ],
         "bytes": 2,
         "format": "bne   ${0:04x}",
-        "opcode": "d0",
-        "unpack": "b"
+        "opcode": "d0"
     },
     {
         "bytes": 1,
@@ -1675,8 +1527,7 @@
         ],
         "bytes": 2,
         "format": "clr6  ${0:02x}",
-        "opcode": "d2",
-        "unpack": "B"
+        "opcode": "d2"
     },
     {
         "args": [
@@ -1685,8 +1536,7 @@
         ],
         "bytes": 3,
         "format": "bbc6  ${0:02x},${1:04x}",
-        "opcode": "d3",
-        "unpack": "Bb"
+        "opcode": "d3"
     },
     {
         "args": [
@@ -1694,8 +1544,7 @@
         ],
         "bytes": 2,
         "format": "mov   ${0:02x}+x,a",
-        "opcode": "d4",
-        "unpack": "B"
+        "opcode": "d4"
     },
     {
         "args": [
@@ -1703,8 +1552,7 @@
         ],
         "bytes": 3,
         "format": "mov   ${0:04x}+x,a",
-        "opcode": "d5",
-        "unpack": "H"
+        "opcode": "d5"
     },
     {
         "args": [
@@ -1712,8 +1560,7 @@
         ],
         "bytes": 3,
         "format": "mov   ${0:04x}+y,a",
-        "opcode": "d6",
-        "unpack": "H"
+        "opcode": "d6"
     },
     {
         "args": [
@@ -1721,8 +1568,7 @@
         ],
         "bytes": 2,
         "format": "mov   (${0:02x})+y,a",
-        "opcode": "d7",
-        "unpack": "B"
+        "opcode": "d7"
     },
     {
         "args": [
@@ -1730,8 +1576,7 @@
         ],
         "bytes": 2,
         "format": "mov   ${0:02x},x",
-        "opcode": "d8",
-        "unpack": "B"
+        "opcode": "d8"
     },
     {
         "args": [
@@ -1739,8 +1584,7 @@
         ],
         "bytes": 2,
         "format": "mov   ${0:02x}+y,x",
-        "opcode": "d9",
-        "unpack": "B"
+        "opcode": "d9"
     },
     {
         "args": [
@@ -1748,8 +1592,7 @@
         ],
         "bytes": 2,
         "format": "movw  ${0:02x},ya",
-        "opcode": "da",
-        "unpack": "B"
+        "opcode": "da"
     },
     {
         "args": [
@@ -1757,8 +1600,7 @@
         ],
         "bytes": 2,
         "format": "mov   ${0:02x}+x,y",
-        "opcode": "db",
-        "unpack": "B"
+        "opcode": "db"
     },
     {
         "bytes": 1,
@@ -1777,8 +1619,7 @@
         ],
         "bytes": 3,
         "format": "cbne  ${0:02x}+x,${1:04x}",
-        "opcode": "de",
-        "unpack": "Bb"
+        "opcode": "de"
     },
     {
         "bytes": 1,
@@ -1801,8 +1642,7 @@
         ],
         "bytes": 2,
         "format": "set7  ${0:02x}",
-        "opcode": "e2",
-        "unpack": "B"
+        "opcode": "e2"
     },
     {
         "args": [
@@ -1811,8 +1651,7 @@
         ],
         "bytes": 3,
         "format": "bbs7  ${0:02x},${1:04x}",
-        "opcode": "e3",
-        "unpack": "Bb"
+        "opcode": "e3"
     },
     {
         "args": [
@@ -1820,8 +1659,7 @@
         ],
         "bytes": 2,
         "format": "mov   a,${0:02x}",
-        "opcode": "e4",
-        "unpack": "B"
+        "opcode": "e4"
     },
     {
         "args": [
@@ -1829,8 +1667,7 @@
         ],
         "bytes": 3,
         "format": "mov   a,${0:04x}",
-        "opcode": "e5",
-        "unpack": "H"
+        "opcode": "e5"
     },
     {
         "bytes": 1,
@@ -1843,8 +1680,7 @@
         ],
         "bytes": 2,
         "format": "mov   a,(${0:02x}+x)",
-        "opcode": "e7",
-        "unpack": "B"
+        "opcode": "e7"
     },
     {
         "args": [
@@ -1852,8 +1688,7 @@
         ],
         "bytes": 2,
         "format": "mov   a,#${0:02x}",
-        "opcode": "e8",
-        "unpack": "B"
+        "opcode": "e8"
     },
     {
         "args": [
@@ -1861,8 +1696,7 @@
         ],
         "bytes": 3,
         "format": "mov   x,${0:04x}",
-        "opcode": "e9",
-        "unpack": "H"
+        "opcode": "e9"
     },
     {
         "args": [
@@ -1870,8 +1704,7 @@
         ],
         "bytes": 3,
         "format": "not1  ${0:04x},{1:x}",
-        "opcode": "ea",
-        "unpack": "H"
+        "opcode": "ea"
     },
     {
         "args": [
@@ -1879,8 +1712,7 @@
         ],
         "bytes": 2,
         "format": "mov   y,${0:02x}",
-        "opcode": "eb",
-        "unpack": "B"
+        "opcode": "eb"
     },
     {
         "args": [
@@ -1888,8 +1720,7 @@
         ],
         "bytes": 3,
         "format": "mov   y,${0:04x}",
-        "opcode": "ec",
-        "unpack": "H"
+        "opcode": "ec"
     },
     {
         "bytes": 1,
@@ -1912,8 +1743,7 @@
         ],
         "bytes": 2,
         "format": "beq   ${0:04x}",
-        "opcode": "f0",
-        "unpack": "b"
+        "opcode": "f0"
     },
     {
         "bytes": 1,
@@ -1926,8 +1756,7 @@
         ],
         "bytes": 2,
         "format": "clr7  ${0:02x}",
-        "opcode": "f2",
-        "unpack": "B"
+        "opcode": "f2"
     },
     {
         "args": [
@@ -1936,8 +1765,7 @@
         ],
         "bytes": 3,
         "format": "bbc7  ${0:02x},${1:04x}",
-        "opcode": "f3",
-        "unpack": "Bb"
+        "opcode": "f3"
     },
     {
         "args": [
@@ -1945,8 +1773,7 @@
         ],
         "bytes": 2,
         "format": "mov   a,${0:02x}+x",
-        "opcode": "f4",
-        "unpack": "B"
+        "opcode": "f4"
     },
     {
         "args": [
@@ -1954,8 +1781,7 @@
         ],
         "bytes": 3,
         "format": "mov   a,${0:04x}+x",
-        "opcode": "f5",
-        "unpack": "H"
+        "opcode": "f5"
     },
     {
         "args": [
@@ -1963,8 +1789,7 @@
         ],
         "bytes": 3,
         "format": "mov   a,${0:04x}+y",
-        "opcode": "f6",
-        "unpack": "H"
+        "opcode": "f6"
     },
     {
         "args": [
@@ -1972,8 +1797,7 @@
         ],
         "bytes": 2,
         "format": "mov   a,(${0:02x})+y",
-        "opcode": "f7",
-        "unpack": "B"
+        "opcode": "f7"
     },
     {
         "args": [
@@ -1981,8 +1805,7 @@
         ],
         "bytes": 2,
         "format": "mov   x,${0:02x}",
-        "opcode": "f8",
-        "unpack": "B"
+        "opcode": "f8"
     },
     {
         "args": [
@@ -1990,8 +1813,7 @@
         ],
         "bytes": 2,
         "format": "mov   x,${0:02x}+y",
-        "opcode": "f9",
-        "unpack": "B"
+        "opcode": "f9"
     },
     {
         "args": [
@@ -2000,8 +1822,7 @@
         ],
         "bytes": 3,
         "format": "mov   (${1:02x}),(${0:02x})",
-        "opcode": "fa",
-        "unpack": "BB"
+        "opcode": "fa"
     },
     {
         "args": [
@@ -2009,8 +1830,7 @@
         ],
         "bytes": 2,
         "format": "mov   y,${0:02x}+x",
-        "opcode": "fb",
-        "unpack": "B"
+        "opcode": "fb"
     },
     {
         "bytes": 1,
@@ -2028,8 +1848,7 @@
         ],
         "bytes": 2,
         "format": "dbnz  y,${0:04x}",
-        "opcode": "fe",
-        "unpack": "b"
+        "opcode": "fe"
     },
     {
         "bytes": 1,
