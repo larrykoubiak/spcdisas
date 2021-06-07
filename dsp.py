@@ -27,8 +27,10 @@ class DSP:
         sample_offset,loop_offset = unpack("<HH",self.RAM[offset:offset+4])
         if sample_offset != 0xFFFF and sample_offset !=0:
             brr.decode(sample_offset)
-            loopoint = int(((loop_offset - sample_offset) / 9) * 16)
-            return brr.to_wave(loopoint)
+            looppoint = None
+            if brr.loop == 1 and loop_offset >= sample_offset:
+                looppoint = int(((loop_offset - sample_offset) / 9) * 16)
+            return brr.to_wave(looppoint)
         else:
             return b'\0'
 

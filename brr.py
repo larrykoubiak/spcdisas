@@ -14,6 +14,7 @@ class BRR:
         self.pcmsamples = None
         self.p2 = 0
         self.p1 = 0
+        self.loop = 0
 
     def decode(self,offset):
         self.pcmsamples = []
@@ -21,8 +22,9 @@ class BRR:
         self.p1 = 0
         idx = offset
         header = BRRHeader(0)
-        while not header.end:
+        while not header.end and idx < (len(self.ram)-8):
             header = BRRHeader(self.ram[idx])
+            self.loop = header.loop
             idx +=1
             for i in range(8):
                 self.decode_brrsample((self.ram[idx+i] >> 4), header)
