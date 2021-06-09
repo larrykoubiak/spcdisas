@@ -44,7 +44,7 @@ class SPCFile:
         )
         filename = os.path.basename(self.path).replace('.spc','.s')
         os.makedirs(path, exist_ok=True)
-        script.export(os.path.join(path, filename), addr, hex)
+        script.export(os.path.join(path, filename), addr, hex, rel)
 
     def extract_samples(self):
         song_folder = "" if "OST Track" not in self.extended666.values else "{:02d} - ".format(self.extended666.values["OST Track"])
