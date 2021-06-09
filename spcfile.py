@@ -35,14 +35,29 @@ class SPCFile:
         while self.spc700.PC < (0x10000 if stop=="eof" else int(stop,16)):
             decinc = self.spc700.decodePC()
             script.instructions[decinc.offset] = decinc
-        script.export(self.path.replace('.spc','.s'), addr, hex, rel)
+        song_folder = "" if "OST Track" not in self.extended666.values else "{:02d} - ".format(self.extended666.values["OST Track"])
+        song_folder += self.id666.song_title
+        path = os.path.join(
+            "test",
+            self.id666.game_title,
+            song_folder
+        )
+        filename = os.path.basename(self.path).replace('.spc','.s')
+        os.makedirs(path, exist_ok=True)
+        script.export(os.path.join(path, filename), addr, hex)
 
     def extract_samples(self):
+        song_folder = "" if "OST Track" not in self.extended666.values else "{:02d} - ".format(self.extended666.values["OST Track"])
+        song_folder += self.id666.song_title
+        path = os.path.join(
+            "test",
+            self.id666.game_title,
+            song_folder
+        )
+        os.makedirs(path, exist_ok=True)
         for track_id in range(64):
             sample = self.spc700.dsp.sample_2_wav(track_id)
             if sample is not None and sample != b'\0':
-                path = os.path.join("test", self.id666.game_title, "{:02d} - ".format(self.extended666.values["OST Track"]) + self.id666.song_title)
-                os.makedirs(path, exist_ok=True)
                 filename = os.path.join(path,"sample_{:02d}.wav".format(track_id))
                 with open(filename,'wb') as f:
                     f.write(sample)

@@ -70,7 +70,7 @@ class ExtendedID666Tag:
                     length = unpack("<H", bytes[index:index+2])[0]
                     index +=2
                     format = tag["unpack"].format(length)
-                    self.values[tag["description"]] = unpack(format,bytes[index:index + length])[0].decode("ascii")
+                    self.values[tag["description"]] = unpack(format,bytes[index:index + length])[0].decode("ascii").split('\0', 1)[0]
                     index += pad(length)
                 elif type == 4: ## integer
                     length = unpack("<H", bytes[index:index+2])[0]
@@ -84,6 +84,6 @@ class ExtendedID666Tag:
         result += "+{:^130}+\n".format("EXTENDED ID666 TAGS")
         result += "+" + "-" * 130 + "+\n"
         for name, value in self.values.items():
-            result += "| {:^26} | {:100} |\n".format(name, str(value))
+            result += "| {:^26} | {:100}|\n".format(name, str(value))
             result += "+" + "-" * 130 + "+\n"
         return result

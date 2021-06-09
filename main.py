@@ -3,7 +3,7 @@ from gooey import Gooey, GooeyParser
 from spcfile import SPCFile
 from spc700 import SPC700
 
-@Gooey(program_name="SPC Disassembler", default_size=(800, 600))
+@Gooey(program_name="SPC Disassembler", default_size=(800, 600),terminal_font_family='Courier New')
 def main():
     parser = GooeyParser()
     parser.add_argument('spcfile',help="SPC File",widget="FileChooser")
