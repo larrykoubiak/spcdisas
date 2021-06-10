@@ -1,5 +1,6 @@
 from json import load
 from struct import unpack
+import instructions
 from instructions import SPC700Instruction
 from dsp import DSP
 
@@ -75,6 +76,8 @@ class SPC700:
     def __init__(self, reg_bytes=None, ram=None, dspreg_bytes=None, ipl_ram=None):
         with open("config/spc700_instructions.json","r") as f:
             self.__instructions = load(f)
+        for ins in self.__instructions:
+            ins["fp"] = getattr(instructions, "instruction" + ins["instruction"])
         self.PC = 0x0200
         self.A = 0x00
         self.X = 0x00
