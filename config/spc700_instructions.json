@@ -1,1858 +1,2050 @@
 [
     {
+        "args": "",
         "bytes": 1,
         "format": "nop",
-        "opcode": "00"
+        "opcode": "00",
+        "instruction": "NoOperation",
+        "instruction_args": ""
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "tcall 0",
-        "opcode": "01"
+        "opcode": "01",
+        "instruction": "CallTable",
+        "instruction_args": "0"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "set0  ${0:02x}",
-        "opcode": "02"
+        "opcode": "02",
+        "instruction": "AbsoluteBitSet",
+        "instruction_args": "0,true"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "bbs0  ${0:02x},${1:04x}",
-        "opcode": "03"
+        "opcode": "03",
+        "instruction": "BranchBit",
+        "instruction_args": "0,true"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "or    a,${0:02x}",
-        "opcode": "04"
+        "opcode": "04",
+        "instruction": "DirectRead",
+        "instruction_args": "fp(OR),A"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "or    a,${0:04x}",
-        "opcode": "05"
+        "opcode": "05",
+        "instruction": "AbsoluteRead",
+        "instruction_args": "fp(OR),A"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "or    a,(x)",
-        "opcode": "06"
+        "opcode": "06",
+        "instruction": "IndirectXRead",
+        "instruction_args": "fp(OR)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "or    a,(${0:02x}+x)",
-        "opcode": "07"
+        "opcode": "07",
+        "instruction": "IndexedIndirectRead",
+        "instruction_args": "fp(OR),X"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "or    a,#${0:02x}",
-        "opcode": "08"
+        "opcode": "08",
+        "instruction": "ImmediateRead",
+        "instruction_args": "fp(OR),A"
     },
     {
-        "args": [
-            "b",
-            "b"
-        ],
+        "args": "bb",
         "bytes": 3,
         "format": "or    (${1:02x}),(${0:02x})",
-        "opcode": "09"
+        "opcode": "09",
+        "instruction": "DirectDirectModify",
+        "instruction_args": "fp(OR)"
     },
     {
-        "args": [
-            "m"
-        ],
+        "args": "m",
         "bytes": 3,
         "format": "or1   c,${0:04x},{1:x}",
-        "opcode": "0a"
+        "opcode": "0a",
+        "instruction": "AbsoluteBitModify",
+        "instruction_args": "0"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "asl   ${0:02x}",
-        "opcode": "0b"
+        "opcode": "0b",
+        "instruction": "DirectModify",
+        "instruction_args": "fp(ASL)"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "asl   ${0:04x}",
-        "opcode": "0c"
+        "opcode": "0c",
+        "instruction": "AbsoluteModify",
+        "instruction_args": "fp(ASL)"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "push  psw",
-        "opcode": "0d"
+        "opcode": "0d",
+        "instruction": "Push",
+        "instruction_args": "P"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "tset1 ${0:04x}",
-        "opcode": "0e"
+        "opcode": "0e",
+        "instruction": "TestSetBitsAbsolute",
+        "instruction_args": "true"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "brk",
-        "opcode": "0f"
+        "opcode": "0f",
+        "instruction": "Break",
+        "instruction_args": ""
     },
     {
-        "args": [
-            "r"
-        ],
+        "args": "r",
         "bytes": 2,
         "format": "bpl   ${0:04x}",
-        "opcode": "10"
+        "opcode": "10",
+        "instruction": "Branch",
+        "instruction_args": "NF == 0"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "tcall 1",
-        "opcode": "11"
+        "opcode": "11",
+        "instruction": "CallTable",
+        "instruction_args": "1"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "clr0  ${0:02x}",
-        "opcode": "12"
+        "opcode": "12",
+        "instruction": "AbsoluteBitSet",
+        "instruction_args": "0,false"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "bbc0  ${0:02x},${1:04x}",
-        "opcode": "13"
+        "opcode": "13",
+        "instruction": "BranchBit",
+        "instruction_args": "0,false"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "or    a,${0:02x}+x",
-        "opcode": "14"
+        "opcode": "14",
+        "instruction": "DirectIndexedRead",
+        "instruction_args": "fp(OR),A,X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "or    a,${0:04x}+x",
-        "opcode": "15"
+        "opcode": "15",
+        "instruction": "AbsoluteIndexedRead",
+        "instruction_args": "fp(OR),X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "or    a,${0:04x}+y",
-        "opcode": "16"
+        "opcode": "16",
+        "instruction": "AbsoluteIndexedRead",
+        "instruction_args": "fp(OR),Y"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "or    a,(${0:02x})+y",
-        "opcode": "17"
+        "opcode": "17",
+        "instruction": "IndirectIndexedRead",
+        "instruction_args": "fp(OR),Y"
     },
     {
-        "args": [
-            "b",
-            "b"
-        ],
+        "args": "bb",
         "bytes": 3,
         "format": "or    ${1:02x},#${0:02x}",
-        "opcode": "18"
+        "opcode": "18",
+        "instruction": "DirectImmediateModify",
+        "instruction_args": "fp(OR)"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "or    (x),(y)",
-        "opcode": "19"
+        "opcode": "19",
+        "instruction": "IndirectXWriteIndirectY",
+        "instruction_args": "fp(OR)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "decw  ${0:02x}",
-        "opcode": "1a"
+        "opcode": "1a",
+        "instruction": "DirectModifyWord",
+        "instruction_args": "-1"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "asl   ${0:02x}+x",
-        "opcode": "1b"
+        "opcode": "1b",
+        "instruction": "DirectIndexedModify",
+        "instruction_args": "fp(ASL),X"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "asl   a",
-        "opcode": "1c"
+        "opcode": "1c",
+        "instruction": "ImpliedModify",
+        "instruction_args": "fp(ASL),A"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "dec   x",
-        "opcode": "1d"
+        "opcode": "1d",
+        "instruction": "ImpliedModify",
+        "instruction_args": "fp(DEC),X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "cmp   x,${0:04x}",
-        "opcode": "1e"
+        "opcode": "1e",
+        "instruction": "AbsoluteRead",
+        "instruction_args": "fp(CMP),X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "jmp   (${0:04x}+x)",
-        "opcode": "1f"
+        "opcode": "1f",
+        "instruction": "JumpIndirectX",
+        "instruction_args": ""
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "clrp",
-        "opcode": "20"
+        "opcode": "20",
+        "instruction": "FlagSet",
+        "instruction_args": "PF,false"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "tcall 2",
-        "opcode": "21"
+        "opcode": "21",
+        "instruction": "CallTable",
+        "instruction_args": "2"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "set1  ${0:02x}",
-        "opcode": "22"
+        "opcode": "22",
+        "instruction": "AbsoluteBitSet",
+        "instruction_args": "1,true"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "bbs1  ${0:02x},${1:04x}",
-        "opcode": "23"
+        "opcode": "23",
+        "instruction": "BranchBit",
+        "instruction_args": "1,true"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "and   a,${0:02x}",
-        "opcode": "24"
+        "opcode": "24",
+        "instruction": "DirectRead",
+        "instruction_args": "fp(AND),A"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "and   a,${0:04x}",
-        "opcode": "25"
+        "opcode": "25",
+        "instruction": "AbsoluteRead",
+        "instruction_args": "fp(AND),A"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "and   a,(x)",
-        "opcode": "26"
+        "opcode": "26",
+        "instruction": "IndirectXRead",
+        "instruction_args": "fp(AND)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "and   a,(${0:02x}+x)",
-        "opcode": "27"
+        "opcode": "27",
+        "instruction": "IndexedIndirectRead",
+        "instruction_args": "fp(AND),X"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "and   a,#${0:02x}",
-        "opcode": "28"
+        "opcode": "28",
+        "instruction": "ImmediateRead",
+        "instruction_args": "fp(AND),A"
     },
     {
-        "args": [
-            "b",
-            "b"
-        ],
+        "args": "bb",
         "bytes": 3,
         "format": "and   (${1:02x}),(${0:02x})",
-        "opcode": "29"
+        "opcode": "29",
+        "instruction": "DirectDirectModify",
+        "instruction_args": "fp(AND)"
     },
     {
-        "args": [
-            "m"
-        ],
+        "args": "m",
         "bytes": 3,
         "format": "or1   c,!(${0:04x},{1:x})",
-        "opcode": "2a"
+        "opcode": "2a",
+        "instruction": "AbsoluteBitModify",
+        "instruction_args": "1"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "rol   ${0:02x}",
-        "opcode": "2b"
+        "opcode": "2b",
+        "instruction": "DirectModify",
+        "instruction_args": "fp(ROL)"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "rol   ${0:04x}",
-        "opcode": "2c"
+        "opcode": "2c",
+        "instruction": "AbsoluteModify",
+        "instruction_args": "fp(ROL)"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "push  a",
-        "opcode": "2d"
+        "opcode": "2d",
+        "instruction": "Push",
+        "instruction_args": "A"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "cbne  ${0:02x},${1:04x}",
-        "opcode": "2e"
+        "opcode": "2e",
+        "instruction": "BranchNotDirect",
+        "instruction_args": ""
     },
     {
-        "args": [
-            "r"
-        ],
+        "args": "r",
         "bytes": 2,
         "format": "bra   ${0:04x}",
-        "opcode": "2f"
+        "opcode": "2f",
+        "instruction": "Branch",
+        "instruction_args": "true"
     },
     {
-        "args": [
-            "r"
-        ],
+        "args": "r",
         "bytes": 2,
         "format": "bmi   ${0:04x}",
-        "opcode": "30"
+        "opcode": "30",
+        "instruction": "Branch",
+        "instruction_args": "NF == 1"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "tcall 3",
-        "opcode": "31"
+        "opcode": "31",
+        "instruction": "CallTable",
+        "instruction_args": "3"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "clr1  ${0:02x}",
-        "opcode": "32"
+        "opcode": "32",
+        "instruction": "AbsoluteBitSet",
+        "instruction_args": "1,false"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "bbc1  ${0:02x},${1:04x}",
-        "opcode": "33"
+        "opcode": "33",
+        "instruction": "BranchBit",
+        "instruction_args": "1,false"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "and   a,${0:02x}+x",
-        "opcode": "34"
+        "opcode": "34",
+        "instruction": "DirectIndexedRead",
+        "instruction_args": "fp(AND),A,X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "and   a,${0:04x}+x",
-        "opcode": "35"
+        "opcode": "35",
+        "instruction": "AbsoluteIndexedRead",
+        "instruction_args": "fp(AND),X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "and   a,${0:04x}+y",
-        "opcode": "36"
+        "opcode": "36",
+        "instruction": "AbsoluteIndexedRead",
+        "instruction_args": "fp(AND),Y"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "and   a,(${0:02x})+y",
-        "opcode": "37"
+        "opcode": "37",
+        "instruction": "IndirectIndexedRead",
+        "instruction_args": "fp(AND),Y"
     },
     {
-        "args": [
-            "b",
-            "b"
-        ],
+        "args": "bb",
         "bytes": 3,
         "format": "and   ${1:02x},#${0:02x}",
-        "opcode": "38"
+        "opcode": "38",
+        "instruction": "DirectImmediateModify",
+        "instruction_args": "fp(AND)"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "and   (x),(y)",
-        "opcode": "39"
+        "opcode": "39",
+        "instruction": "IndirectXWriteIndirectY",
+        "instruction_args": "fp(AND)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "incw  ${0:02x}",
-        "opcode": "3a"
+        "opcode": "3a",
+        "instruction": "DirectModifyWord",
+        "instruction_args": "+1"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "rol   ${0:02x}+x",
-        "opcode": "3b"
+        "opcode": "3b",
+        "instruction": "DirectIndexedModify",
+        "instruction_args": "fp(ROL),X"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "rol   a",
-        "opcode": "3c"
+        "opcode": "3c",
+        "instruction": "ImpliedModify",
+        "instruction_args": "fp(ROL),A"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "inc   x",
-        "opcode": "3d"
+        "opcode": "3d",
+        "instruction": "ImpliedModify",
+        "instruction_args": "fp(INC),X"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "cmp   x,${0:02x}",
-        "opcode": "3e"
+        "opcode": "3e",
+        "instruction": "DirectRead",
+        "instruction_args": "fp(CMP),X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "call  ${0:04x}",
-        "opcode": "3f"
+        "opcode": "3f",
+        "instruction": "CallAbsolute",
+        "instruction_args": ""
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "setp",
-        "opcode": "40"
+        "opcode": "40",
+        "instruction": "FlagSet",
+        "instruction_args": "PF,true"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "tcall 4",
-        "opcode": "41"
+        "opcode": "41",
+        "instruction": "CallTable",
+        "instruction_args": "4"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "set2  ${0:02x}",
-        "opcode": "42"
+        "opcode": "42",
+        "instruction": "AbsoluteBitSet",
+        "instruction_args": "2,true"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "bbs2  ${0:02x},${1:04x}",
-        "opcode": "43"
+        "opcode": "43",
+        "instruction": "BranchBit",
+        "instruction_args": "2,true"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "eor   a,${0:02x}",
-        "opcode": "44"
+        "opcode": "44",
+        "instruction": "DirectRead",
+        "instruction_args": "fp(EOR),A"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "eor   a,${0:04x}",
-        "opcode": "45"
+        "opcode": "45",
+        "instruction": "AbsoluteRead",
+        "instruction_args": "fp(EOR),A"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "eor   a,(x)",
-        "opcode": "46"
+        "opcode": "46",
+        "instruction": "IndirectXRead",
+        "instruction_args": "fp(EOR)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "eor   a,(${0:02x}+x)",
-        "opcode": "47"
+        "opcode": "47",
+        "instruction": "IndexedIndirectRead",
+        "instruction_args": "fp(EOR),X"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "eor   a,#${0:02x}",
-        "opcode": "48"
+        "opcode": "48",
+        "instruction": "ImmediateRead",
+        "instruction_args": "fp(EOR),A"
     },
     {
-        "args": [
-            "b",
-            "b"
-        ],
+        "args": "bb",
         "bytes": 3,
         "format": "eor   (${1:02x}),(${0:02x})",
-        "opcode": "49"
+        "opcode": "49",
+        "instruction": "DirectDirectModify",
+        "instruction_args": "fp(EOR)"
     },
     {
-        "args": [
-            "m"
-        ],
+        "args": "m",
         "bytes": 3,
         "format": "and1  c,${0:04x},{1:x}",
-        "opcode": "4a"
+        "opcode": "4a",
+        "instruction": "AbsoluteBitModify",
+        "instruction_args": "2"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "lsr   ${0:02x}",
-        "opcode": "4b"
+        "opcode": "4b",
+        "instruction": "DirectModify",
+        "instruction_args": "fp(LSR)"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "lsr   ${0:04x}",
-        "opcode": "4c"
+        "opcode": "4c",
+        "instruction": "AbsoluteModify",
+        "instruction_args": "fp(LSR)"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "push  x",
-        "opcode": "4d"
+        "opcode": "4d",
+        "instruction": "Push",
+        "instruction_args": "X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "tclr1 ${0:04x}",
-        "opcode": "4e"
+        "opcode": "4e",
+        "instruction": "TestSetBitsAbsolute",
+        "instruction_args": "false"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "pcall ${0:02x}",
-        "opcode": "4f"
+        "opcode": "4f",
+        "instruction": "CallPage",
+        "instruction_args": ""
     },
     {
-        "args": [
-            "r"
-        ],
+        "args": "r",
         "bytes": 2,
         "format": "bvc   ${0:04x}",
-        "opcode": "50"
+        "opcode": "50",
+        "instruction": "Branch",
+        "instruction_args": "VF == 0"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "tcall 5",
-        "opcode": "51"
+        "opcode": "51",
+        "instruction": "CallTable",
+        "instruction_args": "5"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "clr2  ${0:02x}",
-        "opcode": "52"
+        "opcode": "52",
+        "instruction": "AbsoluteBitSet",
+        "instruction_args": "2,false"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "bbc2  ${0:02x},${1:04x}",
-        "opcode": "53"
+        "opcode": "53",
+        "instruction": "BranchBit",
+        "instruction_args": "2,false"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "eor   a,${0:02x}+x",
-        "opcode": "54"
+        "opcode": "54",
+        "instruction": "DirectIndexedRead",
+        "instruction_args": "fp(EOR),A,X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "eor   a,${0:04x}+x",
-        "opcode": "55"
+        "opcode": "55",
+        "instruction": "AbsoluteIndexedRead",
+        "instruction_args": "fp(EOR),X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "eor   a,${0:04x}+y",
-        "opcode": "56"
+        "opcode": "56",
+        "instruction": "AbsoluteIndexedRead",
+        "instruction_args": "fp(EOR),Y"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "eor   a,(${0:02x})+y",
-        "opcode": "57"
+        "opcode": "57",
+        "instruction": "IndirectIndexedRead",
+        "instruction_args": "fp(EOR),Y"
     },
     {
-        "args": [
-            "b",
-            "b"
-        ],
+        "args": "bb",
         "bytes": 3,
         "format": "eor   ${1:02x},#${0:02x}",
-        "opcode": "58"
+        "opcode": "58",
+        "instruction": "DirectImmediateModify",
+        "instruction_args": "fp(EOR)"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "eor   (x),(y)",
-        "opcode": "59"
+        "opcode": "59",
+        "instruction": "IndirectXWriteIndirectY",
+        "instruction_args": "fp(EOR)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "cmpw  ya,${0:02x}",
-        "opcode": "5a"
+        "opcode": "5a",
+        "instruction": "DirectCompareWord",
+        "instruction_args": "fp(CPW)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "lsr   ${0:02x}+x",
-        "opcode": "5b"
+        "opcode": "5b",
+        "instruction": "DirectIndexedModify",
+        "instruction_args": "fp(LSR),X"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "lsr   a",
-        "opcode": "5c"
+        "opcode": "5c",
+        "instruction": "ImpliedModify",
+        "instruction_args": "fp(LSR),A"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "mov   x,a",
-        "opcode": "5d"
+        "opcode": "5d",
+        "instruction": "Transfer",
+        "instruction_args": "A,X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "cmp   y,${0:04x}",
-        "opcode": "5e"
+        "opcode": "5e",
+        "instruction": "AbsoluteRead",
+        "instruction_args": "fp(CMP),Y"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "jmp   ${0:04x}",
-        "opcode": "5f"
+        "opcode": "5f",
+        "instruction": "JumpAbsolute",
+        "instruction_args": ""
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "clrc",
-        "opcode": "60"
+        "opcode": "60",
+        "instruction": "FlagSet",
+        "instruction_args": "CF,false"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "tcall 6",
-        "opcode": "61"
+        "opcode": "61",
+        "instruction": "CallTable",
+        "instruction_args": "6"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "set3  ${0:02x}",
-        "opcode": "62"
+        "opcode": "62",
+        "instruction": "AbsoluteBitSet",
+        "instruction_args": "3,true"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "bbs3  ${0:02x},${1:04x}",
-        "opcode": "63"
+        "opcode": "63",
+        "instruction": "BranchBit",
+        "instruction_args": "3,true"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "cmp   a,${0:02x}",
-        "opcode": "64"
+        "opcode": "64",
+        "instruction": "DirectRead",
+        "instruction_args": "fp(CMP),A"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "cmp   a,${0:04x}",
-        "opcode": "65"
+        "opcode": "65",
+        "instruction": "AbsoluteRead",
+        "instruction_args": "fp(CMP),A"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "cmp   a,(x)",
-        "opcode": "66"
+        "opcode": "66",
+        "instruction": "IndirectXRead",
+        "instruction_args": "fp(CMP)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "cmp   a,(${0:02x}+x)",
-        "opcode": "67"
+        "opcode": "67",
+        "instruction": "IndexedIndirectRead",
+        "instruction_args": "fp(CMP),X"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "cmp   a,#${0:02x}",
-        "opcode": "68"
+        "opcode": "68",
+        "instruction": "ImmediateRead",
+        "instruction_args": "fp(CMP),A"
     },
     {
-        "args": [
-            "b",
-            "b"
-        ],
+        "args": "bb",
         "bytes": 3,
         "format": "cmp   (${1:02x}),(${0:02x})",
-        "opcode": "69"
+        "opcode": "69",
+        "instruction": "DirectDirectCompare",
+        "instruction_args": "fp(CMP)"
     },
     {
-        "args": [
-            "m"
-        ],
+        "args": "m",
         "bytes": 3,
         "format": "and1  c,!(${0:04x},{1:x})",
-        "opcode": "6a"
+        "opcode": "6a",
+        "instruction": "AbsoluteBitModify",
+        "instruction_args": "3"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "ror   ${0:02x}",
-        "opcode": "6b"
+        "opcode": "6b",
+        "instruction": "DirectModify",
+        "instruction_args": "fp(ROR)"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "ror   ${0:04x}",
-        "opcode": "6c"
+        "opcode": "6c",
+        "instruction": "AbsoluteModify",
+        "instruction_args": "fp(ROR)"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "push  y",
-        "opcode": "6d"
+        "opcode": "6d",
+        "instruction": "Push",
+        "instruction_args": "Y"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "dbnz  ${0:02x},${1:04x}",
-        "opcode": "6e"
+        "opcode": "6e",
+        "instruction": "BranchNotDirectDecrement",
+        "instruction_args": ""
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "ret",
-        "opcode": "6f"
+        "opcode": "6f",
+        "instruction": "ReturnSubroutine",
+        "instruction_args": ""
     },
     {
-        "args": [
-            "r"
-        ],
+        "args": "r",
         "bytes": 2,
         "format": "bvs   ${0:04x}",
-        "opcode": "70"
+        "opcode": "70",
+        "instruction": "Branch",
+        "instruction_args": "VF == 1"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "tcall 7",
-        "opcode": "71"
+        "opcode": "71",
+        "instruction": "CallTable",
+        "instruction_args": "7"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "clr3  ${0:02x}",
-        "opcode": "72"
+        "opcode": "72",
+        "instruction": "AbsoluteBitSet",
+        "instruction_args": "3,false"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "bbc3  ${0:02x},${1:04x}",
-        "opcode": "73"
+        "opcode": "73",
+        "instruction": "BranchBit",
+        "instruction_args": "3,false"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "cmp   a,${0:02x}+x",
-        "opcode": "74"
+        "opcode": "74",
+        "instruction": "DirectIndexedRead",
+        "instruction_args": "fp(CMP),A,X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "cmp   a,${0:04x}+x",
-        "opcode": "75"
+        "opcode": "75",
+        "instruction": "AbsoluteIndexedRead",
+        "instruction_args": "fp(CMP),X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "cmp   a,${0:04x}+y",
-        "opcode": "76"
+        "opcode": "76",
+        "instruction": "AbsoluteIndexedRead",
+        "instruction_args": "fp(CMP),Y"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "cmp   a,(${0:02x})+y",
-        "opcode": "77"
+        "opcode": "77",
+        "instruction": "IndirectIndexedRead",
+        "instruction_args": "fp(CMP),Y"
     },
     {
-        "args": [
-            "b",
-            "b"
-        ],
+        "args": "bb",
         "bytes": 3,
         "format": "cmp   ${1:02x},#${0:02x}",
-        "opcode": "78"
+        "opcode": "78",
+        "instruction": "DirectImmediateCompare",
+        "instruction_args": "fp(CMP)"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "cmp   (x),(y)",
-        "opcode": "79"
+        "opcode": "79",
+        "instruction": "IndirectXCompareIndirectY",
+        "instruction_args": "fp(CMP)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "addw  ya,${0:02x}",
-        "opcode": "7a"
+        "opcode": "7a",
+        "instruction": "DirectReadWord",
+        "instruction_args": "fp(ADW)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "ror   ${0:02x}+x",
-        "opcode": "7b"
+        "opcode": "7b",
+        "instruction": "DirectIndexedModify",
+        "instruction_args": "fp(ROR),X"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "ror   a",
-        "opcode": "7c"
+        "opcode": "7c",
+        "instruction": "ImpliedModify",
+        "instruction_args": "fp(ROR),A"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "mov   a,x",
-        "opcode": "7d"
+        "opcode": "7d",
+        "instruction": "Transfer",
+        "instruction_args": "X,A"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "cmp   y,${0:02x}",
-        "opcode": "7e"
+        "opcode": "7e",
+        "instruction": "DirectRead",
+        "instruction_args": "fp(CMP),Y"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "reti",
-        "opcode": "7f"
+        "opcode": "7f",
+        "instruction": "ReturnInterrupt",
+        "instruction_args": ""
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "setc",
-        "opcode": "80"
+        "opcode": "80",
+        "instruction": "FlagSet",
+        "instruction_args": "CF,true"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "tcall 8",
-        "opcode": "81"
+        "opcode": "81",
+        "instruction": "CallTable",
+        "instruction_args": "8"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "set4  ${0:02x}",
-        "opcode": "82"
+        "opcode": "82",
+        "instruction": "AbsoluteBitSet",
+        "instruction_args": "4,true"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "bbs4  ${0:02x},${1:04x}",
-        "opcode": "83"
+        "opcode": "83",
+        "instruction": "BranchBit",
+        "instruction_args": "4,true"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "adc   a,${0:02x}",
-        "opcode": "84"
+        "opcode": "84",
+        "instruction": "DirectRead",
+        "instruction_args": "fp(ADC),A"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "adc   a,${0:04x}",
-        "opcode": "85"
+        "opcode": "85",
+        "instruction": "AbsoluteRead",
+        "instruction_args": "fp(ADC),A"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "adc   a,(x)",
-        "opcode": "86"
+        "opcode": "86",
+        "instruction": "IndirectXRead",
+        "instruction_args": "fp(ADC)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "adc   a,(${0:02x}+x)",
-        "opcode": "87"
+        "opcode": "87",
+        "instruction": "IndexedIndirectRead",
+        "instruction_args": "fp(ADC),X"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "adc   a,#${0:02x}",
-        "opcode": "88"
+        "opcode": "88",
+        "instruction": "ImmediateRead",
+        "instruction_args": "fp(ADC),A"
     },
     {
-        "args": [
-            "b",
-            "b"
-        ],
+        "args": "bb",
         "bytes": 3,
         "format": "adc   (${1:02x}),(${0:02x})",
-        "opcode": "89"
+        "opcode": "89",
+        "instruction": "DirectDirectModify",
+        "instruction_args": "fp(ADC)"
     },
     {
-        "args": [
-            "m"
-        ],
+        "args": "m",
         "bytes": 3,
         "format": "eor1  c,${0:04x},{1:x}",
-        "opcode": "8a"
+        "opcode": "8a",
+        "instruction": "AbsoluteBitModify",
+        "instruction_args": "4"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "dec   ${0:02x}",
-        "opcode": "8b"
+        "opcode": "8b",
+        "instruction": "DirectModify",
+        "instruction_args": "fp(DEC)"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "dec   ${0:04x}",
-        "opcode": "8c"
+        "opcode": "8c",
+        "instruction": "AbsoluteModify",
+        "instruction_args": "fp(DEC)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   y,#${0:02x}",
-        "opcode": "8d"
+        "opcode": "8d",
+        "instruction": "ImmediateRead",
+        "instruction_args": "fp(LD),Y"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "pop   psw",
-        "opcode": "8e"
+        "opcode": "8e",
+        "instruction": "PullP",
+        "instruction_args": ""
     },
     {
-        "args": [
-            "b",
-            "b"
-        ],
+        "args": "bb",
         "bytes": 3,
         "format": "mov   ${1:02x},#${0:02x}",
-        "opcode": "8f"
+        "opcode": "8f",
+        "instruction": "DirectImmediateWrite",
+        "instruction_args": ""
     },
     {
-        "args": [
-            "r"
-        ],
+        "args": "r",
         "bytes": 2,
         "format": "bcc   ${0:04x}",
-        "opcode": "90"
+        "opcode": "90",
+        "instruction": "Branch",
+        "instruction_args": "CF == 0"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "tcall 9",
-        "opcode": "91"
+        "opcode": "91",
+        "instruction": "CallTable",
+        "instruction_args": "9"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "clr4  ${0:02x}",
-        "opcode": "92"
+        "opcode": "92",
+        "instruction": "AbsoluteBitSet",
+        "instruction_args": "4,false"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "bbc4  ${0:02x},${1:04x}",
-        "opcode": "93"
+        "opcode": "93",
+        "instruction": "BranchBit",
+        "instruction_args": "4,false"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "adc   a,${0:02x}+x",
-        "opcode": "94"
+        "opcode": "94",
+        "instruction": "DirectIndexedRead",
+        "instruction_args": "fp(ADC),A,X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "adc   a,${0:04x}+x",
-        "opcode": "95"
+        "opcode": "95",
+        "instruction": "AbsoluteIndexedRead",
+        "instruction_args": "fp(ADC),X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "adc   a,${0:04x}+y",
-        "opcode": "96"
+        "opcode": "96",
+        "instruction": "AbsoluteIndexedRead",
+        "instruction_args": "fp(ADC),Y"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "adc   a,(${0:02x})+y",
-        "opcode": "97"
+        "opcode": "97",
+        "instruction": "IndirectIndexedRead",
+        "instruction_args": "fp(ADC),Y"
     },
     {
-        "args": [
-            "b",
-            "b"
-        ],
+        "args": "bb",
         "bytes": 3,
         "format": "adc   ${1:02x},#${0:02x}",
-        "opcode": "98"
+        "opcode": "98",
+        "instruction": "DirectImmediateModify",
+        "instruction_args": "fp(ADC)"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "adc   (x),(y)",
-        "opcode": "99"
+        "opcode": "99",
+        "instruction": "IndirectXWriteIndirectY",
+        "instruction_args": "fp(ADC)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "subw  ya,${0:02x}",
-        "opcode": "9a"
+        "opcode": "9a",
+        "instruction": "DirectReadWord",
+        "instruction_args": "fp(SBW)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "dec   ${0:02x}+x",
-        "opcode": "9b"
+        "opcode": "9b",
+        "instruction": "DirectIndexedModify",
+        "instruction_args": "fp(DEC),X"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "dec   a",
-        "opcode": "9c"
+        "opcode": "9c",
+        "instruction": "ImpliedModify",
+        "instruction_args": "fp(DEC),A"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "mov   x,sp",
-        "opcode": "9d"
+        "opcode": "9d",
+        "instruction": "Transfer",
+        "instruction_args": "S,X"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "div   ya,x",
-        "opcode": "9e"
+        "opcode": "9e",
+        "instruction": "Divide",
+        "instruction_args": ""
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "xcn   a",
-        "opcode": "9f"
+        "opcode": "9f",
+        "instruction": "ExchangeNibble",
+        "instruction_args": ""
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "ei",
-        "opcode": "a0"
+        "opcode": "a0",
+        "instruction": "FlagSet",
+        "instruction_args": "IF,true"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "tcall 10",
-        "opcode": "a1"
+        "opcode": "a1",
+        "instruction": "CallTable",
+        "instruction_args": "10"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "set5  ${0:02x}",
-        "opcode": "a2"
+        "opcode": "a2",
+        "instruction": "AbsoluteBitSet",
+        "instruction_args": "5,true"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "bbs5  ${0:02x},${1:04x}",
-        "opcode": "a3"
+        "opcode": "a3",
+        "instruction": "BranchBit",
+        "instruction_args": "5,true"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "sbc   a,${0:02x}",
-        "opcode": "a4"
+        "opcode": "a4",
+        "instruction": "DirectRead",
+        "instruction_args": "fp(SBC),A"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "sbc   a,${0:04x}",
-        "opcode": "a5"
+        "opcode": "a5",
+        "instruction": "AbsoluteRead",
+        "instruction_args": "fp(SBC),A"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "sbc   a,(x)",
-        "opcode": "a6"
+        "opcode": "a6",
+        "instruction": "IndirectXRead",
+        "instruction_args": "fp(SBC)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "sbc   a,(${0:02x}+x)",
-        "opcode": "a7"
+        "opcode": "a7",
+        "instruction": "IndexedIndirectRead",
+        "instruction_args": "fp(SBC),X"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "sbc   a,#${0:02x}",
-        "opcode": "a8"
+        "opcode": "a8",
+        "instruction": "ImmediateRead",
+        "instruction_args": "fp(SBC),A"
     },
     {
-        "args": [
-            "b",
-            "b"
-        ],
+        "args": "bb",
         "bytes": 3,
         "format": "sbc   (${1:02x}),(${0:02x})",
-        "opcode": "a9"
+        "opcode": "a9",
+        "instruction": "DirectDirectModify",
+        "instruction_args": "fp(SBC)"
     },
     {
-        "args": [
-            "m"
-        ],
+        "args": "m",
         "bytes": 3,
         "format": "mov1  c,${0:04x},{1:x}",
-        "opcode": "aa"
+        "opcode": "aa",
+        "instruction": "AbsoluteBitModify",
+        "instruction_args": "5"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "inc   ${0:02x}",
-        "opcode": "ab"
+        "opcode": "ab",
+        "instruction": "DirectModify",
+        "instruction_args": "fp(INC)"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "inc   ${0:04x}",
-        "opcode": "ac"
+        "opcode": "ac",
+        "instruction": "AbsoluteModify",
+        "instruction_args": "fp(INC)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "cmp   y,#${0:02x}",
-        "opcode": "ad"
+        "opcode": "ad",
+        "instruction": "ImmediateRead",
+        "instruction_args": "fp(CMP),Y"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "pop   a",
-        "opcode": "ae"
+        "opcode": "ae",
+        "instruction": "Pull",
+        "instruction_args": "A"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "mov   (x)+,a",
-        "opcode": "af"
+        "opcode": "af",
+        "instruction": "IndirectXIncrementWrite",
+        "instruction_args": "A"
     },
     {
-        "args": [
-            "r"
-        ],
+        "args": "r",
         "bytes": 2,
         "format": "bcs   ${0:04x}",
-        "opcode": "b0"
+        "opcode": "b0",
+        "instruction": "Branch",
+        "instruction_args": "CF == 1"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "tcall 11",
-        "opcode": "b1"
+        "opcode": "b1",
+        "instruction": "CallTable",
+        "instruction_args": "11"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "clr5  ${0:02x}",
-        "opcode": "b2"
+        "opcode": "b2",
+        "instruction": "AbsoluteBitSet",
+        "instruction_args": "5,false"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "bbc5  ${0:02x},${1:04x}",
-        "opcode": "b3"
+        "opcode": "b3",
+        "instruction": "BranchBit",
+        "instruction_args": "5,false"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "sbc   a,${0:02x}+x",
-        "opcode": "b4"
+        "opcode": "b4",
+        "instruction": "DirectIndexedRead",
+        "instruction_args": "fp(SBC),A,X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "sbc   a,${0:04x}+x",
-        "opcode": "b5"
+        "opcode": "b5",
+        "instruction": "AbsoluteIndexedRead",
+        "instruction_args": "fp(SBC),X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "sbc   a,${0:04x}+y",
-        "opcode": "b6"
+        "opcode": "b6",
+        "instruction": "AbsoluteIndexedRead",
+        "instruction_args": "fp(SBC),Y"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "sbc   a,(${0:02x})+y",
-        "opcode": "b7"
+        "opcode": "b7",
+        "instruction": "IndirectIndexedRead",
+        "instruction_args": "fp(SBC),Y"
     },
     {
-        "args": [
-            "b",
-            "b"
-        ],
+        "args": "bb",
         "bytes": 3,
         "format": "sbc   ${1:02x},#${0:02x}",
-        "opcode": "b8"
+        "opcode": "b8",
+        "instruction": "DirectImmediateModify",
+        "instruction_args": "fp(SBC)"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "sbc   (x),(y)",
-        "opcode": "b9"
+        "opcode": "b9",
+        "instruction": "IndirectXWriteIndirectY",
+        "instruction_args": "fp(SBC)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "movw  ya,${0:02x}",
-        "opcode": "ba"
+        "opcode": "ba",
+        "instruction": "DirectReadWord",
+        "instruction_args": "fp(LDW)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "inc   ${0:02x}+x",
-        "opcode": "bb"
+        "opcode": "bb",
+        "instruction": "DirectIndexedModify",
+        "instruction_args": "fp(INC),X"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "inc   a",
-        "opcode": "bc"
+        "opcode": "bc",
+        "instruction": "ImpliedModify",
+        "instruction_args": "fp(INC),A"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "mov   sp,x",
-        "opcode": "bd"
+        "opcode": "bd",
+        "instruction": "Transfer",
+        "instruction_args": "X,S"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "das   a",
-        "opcode": "be"
+        "opcode": "be",
+        "instruction": "DecimalAdjustSub",
+        "instruction_args": ""
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "mov   a,(x)+",
-        "opcode": "bf"
+        "opcode": "bf",
+        "instruction": "IndirectXIncrementRead",
+        "instruction_args": "A"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "di",
-        "opcode": "c0"
+        "opcode": "c0",
+        "instruction": "FlagSet",
+        "instruction_args": "IF,false"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "tcall 12",
-        "opcode": "c1"
+        "opcode": "c1",
+        "instruction": "CallTable",
+        "instruction_args": "12"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "set6  ${0:02x}",
-        "opcode": "c2"
+        "opcode": "c2",
+        "instruction": "AbsoluteBitSet",
+        "instruction_args": "6,true"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "bbs6  ${0:02x},${1:04x}",
-        "opcode": "c3"
+        "opcode": "c3",
+        "instruction": "BranchBit",
+        "instruction_args": "6,true"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   ${0:02x},a",
-        "opcode": "c4"
+        "opcode": "c4",
+        "instruction": "DirectWrite",
+        "instruction_args": "A"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "mov   ${0:04x},a",
-        "opcode": "c5"
+        "opcode": "c5",
+        "instruction": "AbsoluteWrite",
+        "instruction_args": "A"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "mov   (x),a",
-        "opcode": "c6"
+        "opcode": "c6",
+        "instruction": "IndirectXWrite",
+        "instruction_args": "A"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   (${0:02x}+x),a",
-        "opcode": "c7"
+        "opcode": "c7",
+        "instruction": "IndexedIndirectWrite",
+        "instruction_args": "A,X"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "cmp   x,#${0:02x}",
-        "opcode": "c8"
+        "opcode": "c8",
+        "instruction": "ImmediateRead",
+        "instruction_args": "fp(CMP),X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "mov   ${0:04x},x",
-        "opcode": "c9"
+        "opcode": "c9",
+        "instruction": "AbsoluteWrite",
+        "instruction_args": "X"
     },
     {
-        "args": [
-            "m"
-        ],
+        "args": "m",
         "bytes": 3,
         "format": "mov1  ${0:04x},{1:x},c",
-        "opcode": "ca"
+        "opcode": "ca",
+        "instruction": "AbsoluteBitModify",
+        "instruction_args": "6"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   ${0:02x},y",
-        "opcode": "cb"
+        "opcode": "cb",
+        "instruction": "DirectWrite",
+        "instruction_args": "Y"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "mov   ${0:04x},y",
-        "opcode": "cc"
+        "opcode": "cc",
+        "instruction": "AbsoluteWrite",
+        "instruction_args": "Y"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   x,#${0:02x}",
-        "opcode": "cd"
+        "opcode": "cd",
+        "instruction": "ImmediateRead",
+        "instruction_args": "fp(LD),X"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "pop   x",
-        "opcode": "ce"
+        "opcode": "ce",
+        "instruction": "Pull",
+        "instruction_args": "X"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "mul   ya",
-        "opcode": "cf"
+        "opcode": "cf",
+        "instruction": "Multiply",
+        "instruction_args": ""
     },
     {
-        "args": [
-            "r"
-        ],
+        "args": "r",
         "bytes": 2,
         "format": "bne   ${0:04x}",
-        "opcode": "d0"
+        "opcode": "d0",
+        "instruction": "Branch",
+        "instruction_args": "ZF == 0"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "tcall 13",
-        "opcode": "d1"
+        "opcode": "d1",
+        "instruction": "CallTable",
+        "instruction_args": "13"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "clr6  ${0:02x}",
-        "opcode": "d2"
+        "opcode": "d2",
+        "instruction": "AbsoluteBitSet",
+        "instruction_args": "6,false"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "bbc6  ${0:02x},${1:04x}",
-        "opcode": "d3"
+        "opcode": "d3",
+        "instruction": "BranchBit",
+        "instruction_args": "6,false"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   ${0:02x}+x,a",
-        "opcode": "d4"
+        "opcode": "d4",
+        "instruction": "DirectIndexedWrite",
+        "instruction_args": "A,X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "mov   ${0:04x}+x,a",
-        "opcode": "d5"
+        "opcode": "d5",
+        "instruction": "AbsoluteIndexedWrite",
+        "instruction_args": "X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "mov   ${0:04x}+y,a",
-        "opcode": "d6"
+        "opcode": "d6",
+        "instruction": "AbsoluteIndexedWrite",
+        "instruction_args": "Y"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   (${0:02x})+y,a",
-        "opcode": "d7"
+        "opcode": "d7",
+        "instruction": "IndirectIndexedWrite",
+        "instruction_args": "A,Y"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   ${0:02x},x",
-        "opcode": "d8"
+        "opcode": "d8",
+        "instruction": "DirectWrite",
+        "instruction_args": "X"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   ${0:02x}+y,x",
-        "opcode": "d9"
+        "opcode": "d9",
+        "instruction": "DirectIndexedWrite",
+        "instruction_args": "X,Y"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "movw  ${0:02x},ya",
-        "opcode": "da"
+        "opcode": "da",
+        "instruction": "DirectWriteWord",
+        "instruction_args": ""
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   ${0:02x}+x,y",
-        "opcode": "db"
+        "opcode": "db",
+        "instruction": "DirectIndexedWrite",
+        "instruction_args": "Y,X"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "dec   y",
-        "opcode": "dc"
+        "opcode": "dc",
+        "instruction": "ImpliedModify",
+        "instruction_args": "fp(DEC),Y"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "mov   a,y",
-        "opcode": "dd"
+        "opcode": "dd",
+        "instruction": "Transfer",
+        "instruction_args": "Y,A"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "cbne  ${0:02x}+x,${1:04x}",
-        "opcode": "de"
+        "opcode": "de",
+        "instruction": "BranchNotDirectIndexed",
+        "instruction_args": "X"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "daa   a",
-        "opcode": "df"
+        "opcode": "df",
+        "instruction": "DecimalAdjustAdd",
+        "instruction_args": ""
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "clrv",
-        "opcode": "e0"
+        "opcode": "e0",
+        "instruction": "OverflowClear",
+        "instruction_args": ""
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "tcall 14",
-        "opcode": "e1"
+        "opcode": "e1",
+        "instruction": "CallTable",
+        "instruction_args": "14"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "set7  ${0:02x}",
-        "opcode": "e2"
+        "opcode": "e2",
+        "instruction": "AbsoluteBitSet",
+        "instruction_args": "7,true"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "bbs7  ${0:02x},${1:04x}",
-        "opcode": "e3"
+        "opcode": "e3",
+        "instruction": "BranchBit",
+        "instruction_args": "7,true"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   a,${0:02x}",
-        "opcode": "e4"
+        "opcode": "e4",
+        "instruction": "DirectRead",
+        "instruction_args": "fp(LD),A"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "mov   a,${0:04x}",
-        "opcode": "e5"
+        "opcode": "e5",
+        "instruction": "AbsoluteRead",
+        "instruction_args": "fp(LD),A"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "mov   a,(x)",
-        "opcode": "e6"
+        "opcode": "e6",
+        "instruction": "IndirectXRead",
+        "instruction_args": "fp(LD)"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   a,(${0:02x}+x)",
-        "opcode": "e7"
+        "opcode": "e7",
+        "instruction": "IndexedIndirectRead",
+        "instruction_args": "fp(LD),X"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   a,#${0:02x}",
-        "opcode": "e8"
+        "opcode": "e8",
+        "instruction": "ImmediateRead",
+        "instruction_args": "fp(LD),A"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "mov   x,${0:04x}",
-        "opcode": "e9"
+        "opcode": "e9",
+        "instruction": "AbsoluteRead",
+        "instruction_args": "fp(LD),X"
     },
     {
-        "args": [
-            "m"
-        ],
+        "args": "m",
         "bytes": 3,
         "format": "not1  ${0:04x},{1:x}",
-        "opcode": "ea"
+        "opcode": "ea",
+        "instruction": "AbsoluteBitModify",
+        "instruction_args": "7"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   y,${0:02x}",
-        "opcode": "eb"
+        "opcode": "eb",
+        "instruction": "DirectRead",
+        "instruction_args": "fp(LD),Y"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "mov   y,${0:04x}",
-        "opcode": "ec"
+        "opcode": "ec",
+        "instruction": "AbsoluteRead",
+        "instruction_args": "fp(LD),Y"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "notc",
-        "opcode": "ed"
+        "opcode": "ed",
+        "instruction": "ComplementCarry",
+        "instruction_args": ""
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "pop   y",
-        "opcode": "ee"
+        "opcode": "ee",
+        "instruction": "Pull",
+        "instruction_args": "Y"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "sleep",
-        "opcode": "ef"
+        "opcode": "ef",
+        "instruction": "Wait",
+        "instruction_args": ""
     },
     {
-        "args": [
-            "r"
-        ],
+        "args": "r",
         "bytes": 2,
         "format": "beq   ${0:04x}",
-        "opcode": "f0"
+        "opcode": "f0",
+        "instruction": "Branch",
+        "instruction_args": "ZF == 1"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "tcall 15",
-        "opcode": "f1"
+        "opcode": "f1",
+        "instruction": "CallTable",
+        "instruction_args": "15"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "clr7  ${0:02x}",
-        "opcode": "f2"
+        "opcode": "f2",
+        "instruction": "AbsoluteBitSet",
+        "instruction_args": "7,false"
     },
     {
-        "args": [
-            "b",
-            "r"
-        ],
+        "args": "br",
         "bytes": 3,
         "format": "bbc7  ${0:02x},${1:04x}",
-        "opcode": "f3"
+        "opcode": "f3",
+        "instruction": "BranchBit",
+        "instruction_args": "7,false"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   a,${0:02x}+x",
-        "opcode": "f4"
+        "opcode": "f4",
+        "instruction": "DirectIndexedRead",
+        "instruction_args": "fp(LD),A,X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "mov   a,${0:04x}+x",
-        "opcode": "f5"
+        "opcode": "f5",
+        "instruction": "AbsoluteIndexedRead",
+        "instruction_args": "fp(LD),X"
     },
     {
-        "args": [
-            "w"
-        ],
+        "args": "w",
         "bytes": 3,
         "format": "mov   a,${0:04x}+y",
-        "opcode": "f6"
+        "opcode": "f6",
+        "instruction": "AbsoluteIndexedRead",
+        "instruction_args": "fp(LD),Y"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   a,(${0:02x})+y",
-        "opcode": "f7"
+        "opcode": "f7",
+        "instruction": "IndirectIndexedRead",
+        "instruction_args": "fp(LD),Y"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   x,${0:02x}",
-        "opcode": "f8"
+        "opcode": "f8",
+        "instruction": "DirectRead",
+        "instruction_args": "fp(LD),X"
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   x,${0:02x}+y",
-        "opcode": "f9"
+        "opcode": "f9",
+        "instruction": "DirectIndexedRead",
+        "instruction_args": "fp(LD),X,Y"
     },
     {
-        "args": [
-            "b",
-            "b"
-        ],
+        "args": "bb",
         "bytes": 3,
         "format": "mov   (${1:02x}),(${0:02x})",
-        "opcode": "fa"
+        "opcode": "fa",
+        "instruction": "DirectDirectWrite",
+        "instruction_args": ""
     },
     {
-        "args": [
-            "b"
-        ],
+        "args": "b",
         "bytes": 2,
         "format": "mov   y,${0:02x}+x",
-        "opcode": "fb"
+        "opcode": "fb",
+        "instruction": "DirectIndexedRead",
+        "instruction_args": "fp(LD),Y,X"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "inc   y",
-        "opcode": "fc"
+        "opcode": "fc",
+        "instruction": "ImpliedModify",
+        "instruction_args": "fp(INC),Y"
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "mov   y,a",
-        "opcode": "fd"
+        "opcode": "fd",
+        "instruction": "Transfer",
+        "instruction_args": "A,Y"
     },
     {
-        "args": [
-            "r"
-        ],
+        "args": "r",
         "bytes": 2,
         "format": "dbnz  y,${0:04x}",
-        "opcode": "fe"
+        "opcode": "fe",
+        "instruction": "BranchNotYDecrement",
+        "instruction_args": ""
     },
     {
+        "args": "",
         "bytes": 1,
         "format": "stop",
-        "opcode": "ff"
+        "opcode": "ff",
+        "instruction": "Stop",
+        "instruction_args": ""
     }
 ]
