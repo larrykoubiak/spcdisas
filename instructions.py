@@ -11,30 +11,36 @@ class SPC700Instruction:
         self.format = self.instruction["format"]
         self.formatargs = None
         self.unpackmap = {"b":"B","r":"b","w":"H","m":"H"}
-        if self.instruction["bytes"] > 1:
+        self.parse_operands()
+
+    def parse_operands(self):
+        if self.instruction["bytes"] == 1:
+            return
+        else:
             unpackstr = "<" + "".join([self.unpackmap[a] for a in self.instruction["args"]])
-            self.operands = unpack(unpackstr,self.bytes[1:])
+            operands = unpack(unpackstr,self.bytes[1:])
+            self.operands = []
+            for argidx in range(len(self.instruction["args"])):
+                arg = self.instruction["args"][argidx]
+                val = operands[argidx]
+                if arg in ("b","w"):
+                    self.operands.append(val)
+                elif arg=="r":
+                    self.operands.append(self.offset + operands[argidx] + self.instruction["bytes"])
+                elif arg=="m":
+                    self.operands.append(operands[argidx] & 0x1FFF)
+                    self.operands.append(operands[argidx] >> 13)
 
     def tostring(self, resolve_relative):
         result = ""
         if self.instruction["bytes"] == 1:
             result = self.format
         else:
-            formatargs=[]
-            argidx = 0
-            for arg in self.instruction["args"]:
-                if arg in ("b","w"):
-                    formatargs.append(self.operands[argidx])
-                elif arg=="r":
-                    if resolve_relative:
-                        formatargs.append(self.offset + self.operands[argidx] + self.instruction["bytes"])
-                    else:
-                        self.format = self.format.replace(":04x", ":02x")
-                        formatargs.append(self.operands[argidx] & 0xff)
-                elif arg=="m":
-                    formatargs.append(self.operands[argidx] & 0x1FFF)
-                    formatargs.append(self.operands[argidx] >> 13)
-                argidx +=1
+            formatargs = self.operands[:]
+            if not resolve_relative and "r" in self.instruction["args"]:
+                self.format = self.format.replace(":04x", ":02x")
+                argidx = 0 if self.instruction["args"]=="r" else 1
+                formatargs[argidx] = (formatargs[argidx] - (self.offset + self.instruction["bytes"])) & 0xFF
             result = self.format.format(*formatargs)
         return result
 

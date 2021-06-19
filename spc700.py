@@ -73,7 +73,7 @@ class PSW:
 
     @N.setter
     def N(self, value):
-        self.value = sbitset(self.value, 7, value)
+        self.value = bitset(self.value, 7, value)
 
 class SPC700(metaclass=InstructionMeta):
     def __init__(self, reg_bytes=None, ram=None, dspreg_bytes=None, ipl_ram=None):
@@ -91,6 +91,7 @@ class SPC700(metaclass=InstructionMeta):
         self.RAM = bytearray(0x10000) if ram is None else ram
         self.IPLRAM = bytearray(0x40) if ipl_ram is None else ipl_ram
         self.dsp = None if dspreg_bytes is None else DSP(self.RAM, dspreg_bytes)
+        self.read = lambda a : self.RAM[a]
 
     @property
     def YA(self):
