@@ -21,7 +21,7 @@
         "format": "set0  ${0:02x}",
         "opcode": "02",
         "instruction": "AbsoluteBitSet",
-        "instruction_args": "0,true"
+        "instruction_args": "0,True"
     },
     {
         "args": "br",
@@ -29,7 +29,7 @@
         "format": "bbs0  ${0:02x},${1:04x}",
         "opcode": "03",
         "instruction": "BranchBit",
-        "instruction_args": "0,true"
+        "instruction_args": "0,True"
     },
     {
         "args": "b",
@@ -117,7 +117,7 @@
         "format": "tset1 ${0:04x}",
         "opcode": "0e",
         "instruction": "TestSetBitsAbsolute",
-        "instruction_args": "true"
+        "instruction_args": "True"
     },
     {
         "args": "",
@@ -149,7 +149,7 @@
         "format": "clr0  ${0:02x}",
         "opcode": "12",
         "instruction": "AbsoluteBitSet",
-        "instruction_args": "0,false"
+        "instruction_args": "0,False"
     },
     {
         "args": "br",
@@ -157,7 +157,7 @@
         "format": "bbc0  ${0:02x},${1:04x}",
         "opcode": "13",
         "instruction": "BranchBit",
-        "instruction_args": "0,false"
+        "instruction_args": "0,False"
     },
     {
         "args": "b",
@@ -261,7 +261,7 @@
         "format": "clrp",
         "opcode": "20",
         "instruction": "FlagSet",
-        "instruction_args": "PF,false"
+        "instruction_args": "PF,False"
     },
     {
         "args": "",
@@ -277,7 +277,7 @@
         "format": "set1  ${0:02x}",
         "opcode": "22",
         "instruction": "AbsoluteBitSet",
-        "instruction_args": "1,true"
+        "instruction_args": "1,True"
     },
     {
         "args": "br",
@@ -285,7 +285,7 @@
         "format": "bbs1  ${0:02x},${1:04x}",
         "opcode": "23",
         "instruction": "BranchBit",
-        "instruction_args": "1,true"
+        "instruction_args": "1,True"
     },
     {
         "args": "b",
@@ -381,7 +381,7 @@
         "format": "bra   ${0:04x}",
         "opcode": "2f",
         "instruction": "Branch",
-        "instruction_args": "true"
+        "instruction_args": "True"
     },
     {
         "args": "r",
@@ -405,7 +405,7 @@
         "format": "clr1  ${0:02x}",
         "opcode": "32",
         "instruction": "AbsoluteBitSet",
-        "instruction_args": "1,false"
+        "instruction_args": "1,False"
     },
     {
         "args": "br",
@@ -413,7 +413,7 @@
         "format": "bbc1  ${0:02x},${1:04x}",
         "opcode": "33",
         "instruction": "BranchBit",
-        "instruction_args": "1,false"
+        "instruction_args": "1,False"
     },
     {
         "args": "b",
@@ -517,7 +517,7 @@
         "format": "setp",
         "opcode": "40",
         "instruction": "FlagSet",
-        "instruction_args": "PF,true"
+        "instruction_args": "PF,True"
     },
     {
         "args": "",
@@ -533,7 +533,7 @@
         "format": "set2  ${0:02x}",
         "opcode": "42",
         "instruction": "AbsoluteBitSet",
-        "instruction_args": "2,true"
+        "instruction_args": "2,True"
     },
     {
         "args": "br",
@@ -541,7 +541,7 @@
         "format": "bbs2  ${0:02x},${1:04x}",
         "opcode": "43",
         "instruction": "BranchBit",
-        "instruction_args": "2,true"
+        "instruction_args": "2,True"
     },
     {
         "args": "b",
@@ -629,7 +629,7 @@
         "format": "tclr1 ${0:04x}",
         "opcode": "4e",
         "instruction": "TestSetBitsAbsolute",
-        "instruction_args": "false"
+        "instruction_args": "False"
     },
     {
         "args": "b",
@@ -661,7 +661,7 @@
         "format": "clr2  ${0:02x}",
         "opcode": "52",
         "instruction": "AbsoluteBitSet",
-        "instruction_args": "2,false"
+        "instruction_args": "2,False"
     },
     {
         "args": "br",
@@ -669,7 +669,7 @@
         "format": "bbc2  ${0:02x},${1:04x}",
         "opcode": "53",
         "instruction": "BranchBit",
-        "instruction_args": "2,false"
+        "instruction_args": "2,False"
     },
     {
         "args": "b",
@@ -773,7 +773,7 @@
         "format": "clrc",
         "opcode": "60",
         "instruction": "FlagSet",
-        "instruction_args": "CF,false"
+        "instruction_args": "CF,False"
     },
     {
         "args": "",
@@ -789,7 +789,7 @@
         "format": "set3  ${0:02x}",
         "opcode": "62",
         "instruction": "AbsoluteBitSet",
-        "instruction_args": "3,true"
+        "instruction_args": "3,True"
     },
     {
         "args": "br",
@@ -797,7 +797,7 @@
         "format": "bbs3  ${0:02x},${1:04x}",
         "opcode": "63",
         "instruction": "BranchBit",
-        "instruction_args": "3,true"
+        "instruction_args": "3,True"
     },
     {
         "args": "b",
@@ -917,7 +917,7 @@
         "format": "clr3  ${0:02x}",
         "opcode": "72",
         "instruction": "AbsoluteBitSet",
-        "instruction_args": "3,false"
+        "instruction_args": "3,False"
     },
     {
         "args": "br",
@@ -925,7 +925,7 @@
         "format": "bbc3  ${0:02x},${1:04x}",
         "opcode": "73",
         "instruction": "BranchBit",
-        "instruction_args": "3,false"
+        "instruction_args": "3,False"
     },
     {
         "args": "b",
@@ -1029,7 +1029,7 @@
         "format": "setc",
         "opcode": "80",
         "instruction": "FlagSet",
-        "instruction_args": "CF,true"
+        "instruction_args": "CF,True"
     },
     {
         "args": "",
@@ -1045,7 +1045,7 @@
         "format": "set4  ${0:02x}",
         "opcode": "82",
         "instruction": "AbsoluteBitSet",
-        "instruction_args": "4,true"
+        "instruction_args": "4,True"
     },
     {
         "args": "br",
@@ -1053,7 +1053,7 @@
         "format": "bbs4  ${0:02x},${1:04x}",
         "opcode": "83",
         "instruction": "BranchBit",
-        "instruction_args": "4,true"
+        "instruction_args": "4,True"
     },
     {
         "args": "b",
@@ -1173,7 +1173,7 @@
         "format": "clr4  ${0:02x}",
         "opcode": "92",
         "instruction": "AbsoluteBitSet",
-        "instruction_args": "4,false"
+        "instruction_args": "4,False"
     },
     {
         "args": "br",
@@ -1181,7 +1181,7 @@
         "format": "bbc4  ${0:02x},${1:04x}",
         "opcode": "93",
         "instruction": "BranchBit",
-        "instruction_args": "4,false"
+        "instruction_args": "4,False"
     },
     {
         "args": "b",
@@ -1285,7 +1285,7 @@
         "format": "ei",
         "opcode": "a0",
         "instruction": "FlagSet",
-        "instruction_args": "IF,true"
+        "instruction_args": "IF,True"
     },
     {
         "args": "",
@@ -1301,7 +1301,7 @@
         "format": "set5  ${0:02x}",
         "opcode": "a2",
         "instruction": "AbsoluteBitSet",
-        "instruction_args": "5,true"
+        "instruction_args": "5,True"
     },
     {
         "args": "br",
@@ -1309,7 +1309,7 @@
         "format": "bbs5  ${0:02x},${1:04x}",
         "opcode": "a3",
         "instruction": "BranchBit",
-        "instruction_args": "5,true"
+        "instruction_args": "5,True"
     },
     {
         "args": "b",
@@ -1429,7 +1429,7 @@
         "format": "clr5  ${0:02x}",
         "opcode": "b2",
         "instruction": "AbsoluteBitSet",
-        "instruction_args": "5,false"
+        "instruction_args": "5,False"
     },
     {
         "args": "br",
@@ -1437,7 +1437,7 @@
         "format": "bbc5  ${0:02x},${1:04x}",
         "opcode": "b3",
         "instruction": "BranchBit",
-        "instruction_args": "5,false"
+        "instruction_args": "5,False"
     },
     {
         "args": "b",
@@ -1541,7 +1541,7 @@
         "format": "di",
         "opcode": "c0",
         "instruction": "FlagSet",
-        "instruction_args": "IF,false"
+        "instruction_args": "IF,False"
     },
     {
         "args": "",
@@ -1557,7 +1557,7 @@
         "format": "set6  ${0:02x}",
         "opcode": "c2",
         "instruction": "AbsoluteBitSet",
-        "instruction_args": "6,true"
+        "instruction_args": "6,True"
     },
     {
         "args": "br",
@@ -1565,7 +1565,7 @@
         "format": "bbs6  ${0:02x},${1:04x}",
         "opcode": "c3",
         "instruction": "BranchBit",
-        "instruction_args": "6,true"
+        "instruction_args": "6,True"
     },
     {
         "args": "b",
@@ -1685,7 +1685,7 @@
         "format": "clr6  ${0:02x}",
         "opcode": "d2",
         "instruction": "AbsoluteBitSet",
-        "instruction_args": "6,false"
+        "instruction_args": "6,False"
     },
     {
         "args": "br",
@@ -1693,7 +1693,7 @@
         "format": "bbc6  ${0:02x},${1:04x}",
         "opcode": "d3",
         "instruction": "BranchBit",
-        "instruction_args": "6,false"
+        "instruction_args": "6,False"
     },
     {
         "args": "b",
@@ -1813,7 +1813,7 @@
         "format": "set7  ${0:02x}",
         "opcode": "e2",
         "instruction": "AbsoluteBitSet",
-        "instruction_args": "7,true"
+        "instruction_args": "7,True"
     },
     {
         "args": "br",
@@ -1821,7 +1821,7 @@
         "format": "bbs7  ${0:02x},${1:04x}",
         "opcode": "e3",
         "instruction": "BranchBit",
-        "instruction_args": "7,true"
+        "instruction_args": "7,True"
     },
     {
         "args": "b",
@@ -1941,7 +1941,7 @@
         "format": "clr7  ${0:02x}",
         "opcode": "f2",
         "instruction": "AbsoluteBitSet",
-        "instruction_args": "7,false"
+        "instruction_args": "7,False"
     },
     {
         "args": "br",
@@ -1949,7 +1949,7 @@
         "format": "bbc7  ${0:02x},${1:04x}",
         "opcode": "f3",
         "instruction": "BranchBit",
-        "instruction_args": "7,false"
+        "instruction_args": "7,False"
     },
     {
         "args": "b",
