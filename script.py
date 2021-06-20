@@ -9,9 +9,6 @@ class Script:
                 if display_addr:
                     line += "{:04x}: ".format(offset)
                 if display_hex_vals:
-                    hexstr = ""
-                    for i in range(len(decinc.bytes)):
-                        hexstr += "{:02x} ".format(decinc.bytes[i])
-                    line += hexstr + (' ' * (10-(len(decinc.bytes) * 3)))
+                    line += "{:10}".format(" ".join(["{:02x}".format(b) for b in decinc.bytes]))
                 line += decinc.tostring(resolve_relative)
                 o.write(line + "\n")

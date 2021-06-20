@@ -100,8 +100,8 @@ def instructionAbsoluteRead(self, op, target):
     address = self.fetch()
     address |= self.fetch() << 8
     data = self.read(address)
-    reg = getattr(self, target)
-    setattr(self, target, op(reg, data))
+    regtarget = getattr(self, target)
+    setattr(self, target, op(regtarget, data))
 
 def instructionAbsoluteModify(self, op):
     address = self.fetch()
@@ -113,31 +113,30 @@ def instructionAbsoluteWrite(self, data):
     address = self.fetch()
     address |= self.fetch() << 8
     self.read(address)
-    self.write(address, data)
+    regdata = getattr(self, data)
+    self.write(address, regdata)
 
 def instructionAbsoluteIndexedRead(self, op, index):
     address = self.fetch()
     address |= self.fetch() << 8
     self.idle()
-    reg = getattr(self, index)
-    data = self.read(address + reg)
+    regindex = getattr(self, index)
+    data = self.read(address + regindex)
     self.A = op(self.A, data)
 
 def instructionAbsoluteIndexedWrite(self, index):
     address = self.fetch()
     address |= self.fetch() << 8
     self.idle()
-    reg = getattr(self, index)
-    self.read(address + reg)
-    self.write(address + reg, self.A)
+    regindex = getattr(self, index)
+    self.read(address + regindex)
+    self.write(address + regindex, self.A)
 
-def instructionBranch(self, take):
+def instructionBranch(self):
     data = self.fetch()
-    if not take:
-        return
     self.idle()
     self.idle()
-    self.PC += data & 0xFF
+    self.PC += int8(data)
 
 def instructionBranchBit(self, bit, match):
     address = self.fetch()
@@ -149,6 +148,15 @@ def instructionBranchBit(self, bit, match):
     self.idle()
     self.idle()
     self.PC += int8(displacement)
+
+def instructionBranchFlag(self, flag, take):
+    data = self.fetch()
+    bit = bitget(self.P.value, flag)
+    if bit != take:
+        return
+    self.idle()
+    self.idle()
+    self.PC += int8(data)
 
 def instructionBranchNotDirect(self):
     address = self.fetch()
@@ -175,8 +183,8 @@ def instructionBranchNotDirectDecrement(self):
 def instructionBranchNotDirectIndexed(self, index):
     address = self.fetch()
     self.idle()
-    reg = getattr(self, index)
-    data = self.load(address + reg)
+    regindex = getattr(self, index)
+    data = self.load(address + regindex)
     self.idle()
     displacement = self.fetch()
     if(self.A == data):
@@ -267,8 +275,8 @@ def instructionDecimalAdjustSub(self):
 def instructionDirectRead(self, op, target):
     address = self.fetch()
     data = self.load(address)
-    reg = getattr(self, target)
-    setattr(self,target,op(reg, data))
+    regtarget = getattr(self, target)
+    setattr(self,target,op(regtarget, data))
 
 def instructionDirectModify(self, op):
     address = self.fetch()
@@ -277,8 +285,9 @@ def instructionDirectModify(self, op):
 
 def instructionDirectWrite(self, data):
     address = self.fetch()
-    data = self.load(address)
-    self.store(address, data)
+    self.load(address)
+    regdata = getattr(self, data)
+    self.store(address, regdata)
 
 def instructionDirectDirectCompare(self, op):
     source = self.fetch()
@@ -353,24 +362,24 @@ def instructionDirectWriteWord(self):
 def instructionDirectIndexedRead(self, op, target, index):
     address = self.fetch()
     self.idle()
-    reg = getattr(self, index)
-    data = self.load(address + reg)
+    regindex = getattr(self, index)
+    data = self.load(address + regindex)
     regdst = getattr(self, target)
     setattr(self,target,op(regdst, data))
 
 def instructionDirectIndexedModify(self, op, index):
     address = self.fetch()
     self.idle()
-    reg = getattr(self, index)
-    data = self.load(address + reg)
-    self.store(address + reg, op(data))
+    regindex = getattr(self, index)
+    data = self.load(address + regindex)
+    self.store(address + regindex, op(data))
 
 def instructionDirectIndexedWrite(self, data, index):
     address = self.fetch()
     self.idle()
-    reg = getattr(self, index)
-    self.load(address + reg)
-    self.store(address + reg, data)
+    regindex = getattr(self, index)
+    self.load(address + regindex)
+    self.store(address + regindex, data)
 
 def instructionDivide(self):
     self.read(self.PC)
@@ -418,34 +427,35 @@ def instructionImmediateRead(self, op, target):
 
 def instructionImpliedModify(self, op, target):
     self.read(self.PC)
-    reg = getattr(self, target)
-    setattr(self, target, op(reg))
+    regtarget = getattr(self, target)
+    setattr(self, target, op(regtarget))
 
 def instructionIndexedIndirectRead(self, op, index):
     indirect = self.fetch()
     self.idle()
-    reg = getattr(self, index)
-    address = self.load(indirect + reg + 0)
-    address |= self.load(indirect + reg + 1) << 8
+    regindex = getattr(self, index)
+    address = self.load(indirect + regindex + 0)
+    address |= self.load(indirect + regindex + 1) << 8
     data = self.read(address)
     self.A = op(self.A, data)
 
 def instructionIndexedIndirectWrite(self, data, index):
     indirect = self.fetch()
     self.idle()
-    reg = getattr(self, index)
-    address = self.load(indirect + reg + 0)
-    address |= self.load(indirect + reg + 1) << 8
+    regindex = getattr(self, index)
+    address = self.load(indirect + regindex + 0)
+    address |= self.load(indirect + regindex + 1) << 8
     self.read(address)
-    self.write(address, data)
+    regdata = getattr(self, data)
+    self.write(address, regdata)
 
 def instructionIndirectIndexedRead(self, op, index):
     indirect = self.fetch()
     self.idle()
     address = self.load(indirect + 0)
     address |= self.load(indirect + 1) << 8
-    reg = getattr(self, index)
-    data = self.read(address + reg)
+    regindex = getattr(self, index)
+    data = self.read(address + regindex)
     self.A = op(self.A, data)
 
 def instructionIndirectIndexedWrite(self, data, index):
@@ -453,9 +463,10 @@ def instructionIndirectIndexedWrite(self, data, index):
     address = self.load(indirect + 0)
     address |= self.load(indirect + 1) << 8
     self.idle()
-    reg = getattr(self, index)
-    self.read(address + reg)
-    self.write(address + reg, data)
+    regindex = getattr(self, index)
+    self.read(address + regindex)
+    regdata = getattr(self, data)
+    self.write(address + regindex, regdata)
 
 def instructionIndirectXRead(self, op):
     self.read(self.PC)
@@ -465,20 +476,23 @@ def instructionIndirectXRead(self, op):
 def instructionIndirectXWrite(self, data):
     self.read(self.PC)
     self.load(self.X)
-    self.store(self.X, data)
+    regdata = getattr(self, data)
+    self.store(self.X, regdata)
 
 def instructionIndirectXIncrementRead(self, data):
     self.read(self.PC)
     data = self.load(self.X)
     self.X += 1
     self.idle()  # quirk: consumes extra idle cycle compared to most read instructions
-    self.P.Z = data == 0
-    self.P.N = data & 0x80
+    regdata = getattr(self, data)
+    self.P.Z = regdata == 0
+    self.P.N = regdata & 0x80
 
 def instructionIndirectXIncrementWrite(self, data):
     self.read(self.PC)
     self.idle()  # quirk: consumes extra idle cycle compared to most read instructions
-    self.store(self.X, data)
+    regdata = getattr(self, data)
+    self.store(self.X, regdata)
     self.X += 1
 
 def instructionIndirectXCompareIndirectY(self, op):
@@ -543,7 +557,8 @@ def instructionPullP(self):
 
 def instructionPush(self, data):
     self.read(self.PC)
-    self.push(data)
+    regdata = getattr(self, data)
+    self.push(regdata)
     self.idle()
 
 def instructionReturnInterrupt(self):
@@ -578,12 +593,12 @@ def instructionTestSetBitsAbsolute(self, set):
 
 def instructionTransfer(self, start, end):
     self.read(self.PC)
-    src = getattr(self, start)
-    setattr(self, end, src)
+    regfrom = getattr(self, start)
+    setattr(self, end, regfrom)
     if start == "S":
         return
-    self.P.Z = src == 0
-    self.P.N = src & 0x80
+    self.P.Z = regfrom == 0
+    self.P.N = regfrom & 0x80
 
 def instructionWait(self):
     self.wait = True
@@ -602,14 +617,14 @@ def algorithmADC(self, x, y):
 
 def algorithmAND(self, x, y):
     x &= y
-    self.P.Z = x == 0
+    self.P.Z = (x & 0XFF) == 0
     self.P.N = x & 0x80
     return x & 0xFF
 
 def algorithmASL(self, x):
     self.P.C = x & 0x80
     x <<= 1
-    self.P.Z = x == 0
+    self.P.Z = (x & 0XFF) == 0
     self.P.N = x & 0x80
     return x & 0xFF
 
@@ -622,19 +637,19 @@ def algorithmCMP(self, x, y):
 
 def algorithmDEC(self, x):
     x -= 1
-    self.P.Z = x == 0
+    self.P.Z = (x & 0XFF) == 0
     self.P.N = x & 0x80
     return x & 0xFF
 
 def algorithmEOR(self, x, y):
     x ^= y
-    self.P.Z = x == 0
+    self.P.Z = (x & 0XFF) == 0
     self.P.N = x & 0x80
     return x & 0xFF
 
 def algorithmINC(self, x):
     x += 1
-    self.P.Z = x == 0
+    self.P.Z = (x & 0XFF) == 0
     self.P.N = x & 0x80
     return x & 0xFF
 
@@ -646,13 +661,13 @@ def algorithmLD(self, x, y):
 def algorithmLSR(self, x):
     self.P.C = x & 0x01
     x >>= 1
-    self.P.Z = x == 0
+    self.P.Z = (x & 0XFF) == 0
     self.P.N = x & 0x80
     return x & 0xFF
 
 def algorithmOR(self, x, y):
     x |= y
-    self.P.Z = x == 0
+    self.P.Z = (x & 0XFF) == 0
     self.P.N = x & 0x80
     return x & 0xFF
 
@@ -660,7 +675,7 @@ def algorithmROL(self, x):
     carry = self.P.C
     self.P.C = x & 0x80
     x = x << 1 | carry
-    self.P.Z = x == 0
+    self.P.Z = (x & 0XFF) == 0
     self.P.N = x & 0x80
     return x & 0xFF
 
@@ -668,7 +683,7 @@ def algorithmROR(self, x):
     carry = self.P.C
     self.P.C = x & 0x01
     x = carry << 7 | x >> 1
-    self.P.Z = x == 0
+    self.P.Z = (x & 0XFF) == 0
     self.P.N = x & 0x80
     return x & 0xFF
 

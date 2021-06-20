@@ -132,7 +132,7 @@
         "bytes": 2,
         "format": "bpl   ${0:04x}",
         "opcode": "10",
-        "instruction": "Branch",
+        "instruction": "BranchFlag",
         "instruction_args": "NF == 0"
     },
     {
@@ -381,14 +381,14 @@
         "format": "bra   ${0:04x}",
         "opcode": "2f",
         "instruction": "Branch",
-        "instruction_args": "True"
+        "instruction_args": ""
     },
     {
         "args": "r",
         "bytes": 2,
         "format": "bmi   ${0:04x}",
         "opcode": "30",
-        "instruction": "Branch",
+        "instruction": "BranchFlag",
         "instruction_args": "NF == 1"
     },
     {
@@ -644,7 +644,7 @@
         "bytes": 2,
         "format": "bvc   ${0:04x}",
         "opcode": "50",
-        "instruction": "Branch",
+        "instruction": "BranchFlag",
         "instruction_args": "VF == 0"
     },
     {
@@ -900,7 +900,7 @@
         "bytes": 2,
         "format": "bvs   ${0:04x}",
         "opcode": "70",
-        "instruction": "Branch",
+        "instruction": "BranchFlag",
         "instruction_args": "VF == 1"
     },
     {
@@ -1156,7 +1156,7 @@
         "bytes": 2,
         "format": "bcc   ${0:04x}",
         "opcode": "90",
-        "instruction": "Branch",
+        "instruction": "BranchFlag",
         "instruction_args": "CF == 0"
     },
     {
@@ -1412,7 +1412,7 @@
         "bytes": 2,
         "format": "bcs   ${0:04x}",
         "opcode": "b0",
-        "instruction": "Branch",
+        "instruction": "BranchFlag",
         "instruction_args": "CF == 1"
     },
     {
@@ -1668,7 +1668,7 @@
         "bytes": 2,
         "format": "bne   ${0:04x}",
         "opcode": "d0",
-        "instruction": "Branch",
+        "instruction": "BranchFlag",
         "instruction_args": "ZF == 0"
     },
     {
@@ -1924,7 +1924,7 @@
         "bytes": 2,
         "format": "beq   ${0:04x}",
         "opcode": "f0",
-        "instruction": "Branch",
+        "instruction": "BranchFlag",
         "instruction_args": "ZF == 1"
     },
     {

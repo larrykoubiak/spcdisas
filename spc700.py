@@ -100,7 +100,7 @@ class SPC700(metaclass=InstructionMeta):
     def YA(self, value):
         self.Y = value >> 8
         self.A = value & 0xFF
-
+    
     @property
     def instructions(self):
         return self.__instructions
@@ -108,6 +108,7 @@ class SPC700(metaclass=InstructionMeta):
     def __parsebytes(self, reg_bytes):
         fmt = "HBBBH"
         self.PC, self.A, self.X, self.Y, self.S = unpack(fmt, reg_bytes[0:8])
+        self.S |= (1 << 8)
         self.P = PSW(reg_bytes[8])
 
     def read(self, address):
@@ -129,7 +130,7 @@ class SPC700(metaclass=InstructionMeta):
         return self.read(self.P.P << 8 | address)
 
     def store(self, address, data):
-        self.RAM[self.P.P << 8 | address] = data
+        self.write(self.P.P << 8 | address, data)
     
     def pull(self):
         self.S += 1
@@ -159,7 +160,7 @@ class SPC700(metaclass=InstructionMeta):
                         if len(a) == 2:
                             fn += str("CZIHBPVN".index(a[0])) + ","
                         else:
-                            fn += "self.P." + a[0] + a[2:] + ","
+                            fn += str("CZIHBPVN".index(a[0])) + "," + a[-1] + ","
                     else:
                         fn += a + ","
                 fn = fn[:-1] + ")"
@@ -179,7 +180,23 @@ class SPC700(metaclass=InstructionMeta):
     def step(self):
         opcode = self.fetch()
         instruction = self.__instructions[opcode]
+        decinc = SPC700Instruction(
+            self.PC -1,
+            instruction,
+            self.RAM[self.PC-1: self.PC -1 + instruction["bytes"]])
         instruction["fp"]()        
+        print("{:04X}: {:10} {:20} {}".format(
+            decinc.offset,
+            "{:10}".format(" ".join(["{:02x}".format(b) for b in decinc.bytes])),
+            decinc.tostring(True),
+            "A: {:02X} X: {:02X} Y: {:02X} SP: {:04X} {}".format(
+                self.A,
+                self.X, 
+                self.Y, 
+                (1 << 8) | self.S, 
+                " ".join(["{}: {}".format("CZIHBPVN"[i], bitget(self.P.value,i)) for i in range(8)])
+            )
+        ))
 
     def __repr__(self) -> str:
         result =  "+---------------------------------------+\n"

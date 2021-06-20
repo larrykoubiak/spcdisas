@@ -25,7 +25,7 @@ class SPCFile:
         self.version = fields[4]
         spcregbytes = f.read(0x09)
         self.id666 = ID666Tag(f.read(0xD2))
-        self.spc700 = SPC700(spcregbytes, f.read(0x10000), f.read(0xC0), f.read(0x40))
+        self.spc700 = SPC700(spcregbytes, bytearray(f.read(0x10000)), f.read(0xC0), f.read(0x40))
         self.extended666 = ExtendedID666Tag(f.read())
         f.close()
 
