@@ -84,6 +84,8 @@ class SPC700(metaclass=InstructionMeta):
         self.Y = 0x00
         self.S = 0x01EF
         self.P = PSW(0)
+        self.wait = False
+        self.stop = False
         if reg_bytes is not None:
             self.__parsebytes(reg_bytes)
         self.RAM = bytearray(0x10000) if ram is None else ram
