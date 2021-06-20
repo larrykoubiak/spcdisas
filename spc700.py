@@ -3,9 +3,7 @@ from struct import unpack
 from instructions import SPC700Instruction, InstructionMeta
 import instructions
 from dsp import DSP
-
-bitget = lambda x, b : (x & (1 << b)) >> b
-bitset = lambda x, b, v : x | (1 << b) if v == 1 else x & ~(1 << b)
+from bit import bitget, bitset
 class PSW:
     def __init__(self, byte):
         self.value = byte
@@ -91,7 +89,6 @@ class SPC700(metaclass=InstructionMeta):
         self.RAM = bytearray(0x10000) if ram is None else ram
         self.IPLRAM = bytearray(0x40) if ipl_ram is None else ipl_ram
         self.dsp = None if dspreg_bytes is None else DSP(self.RAM, dspreg_bytes)
-        self.read = lambda a : self.RAM[a]
 
     @property
     def YA(self):
@@ -108,9 +105,37 @@ class SPC700(metaclass=InstructionMeta):
 
     def __parsebytes(self, reg_bytes):
         fmt = "HBBBH"
-        self.PC, self.A, self.X, self.Y, self.SP = unpack(fmt, reg_bytes[0:8])
-        self.PSW = PSW(reg_bytes[8])
-        self.PSW.P = 1
+        self.PC, self.A, self.X, self.Y, self.S = unpack(fmt, reg_bytes[0:8])
+        self.P = PSW(reg_bytes[8])
+
+    def read(self, address):
+        return self.RAM[address]
+
+    def write(self, address, data):
+        self.RAM[address] = data
+    
+    def fetch(self):
+        value = self.read(self.PC)
+        self.PC +=1
+        return value
+
+    def load(self, address):
+        return self.read(self.P.P << 8 | address)
+
+    def store(self, address, data):
+        self.RAM[self.P.P << 8 | address] = data
+    
+    def pull(self):
+        self.S += 1
+        value = self.read(1 << 8 | self.S)
+        return value
+
+    def push(self, data):
+        self.write(1 << 8 | self.S, data)
+        self.S -= 1
+
+    def idle(self):
+        pass
 
     def init_instructions(self):
         for i in range(len(self.__instructions)):
@@ -128,7 +153,6 @@ class SPC700(metaclass=InstructionMeta):
                     else:
                         fn += a + ","
                 fn = fn[:-1] + ")"
-            print(fn)
             fp = eval(fn)
             self.__instructions[i]["fp"] = fp
 
@@ -142,14 +166,19 @@ class SPC700(metaclass=InstructionMeta):
         self.PC += instruction["bytes"]
         return decinc
 
+    def step(self):
+        opcode = self.RAM[self.PC]
+        instruction = self.__instructions[opcode]
+        instruction["fp"]()        
+
     def __repr__(self) -> str:
         result =  "+---------------------------------------+\n"
         result += "+            SPC700 REGISTERS           +\n"
         result += "+---------------------------------------+\n"
-        result += "|  PC  |  A |  X |  Y |  SP  | NVPCHIZC |\n"
+        result += "|  PC  |  A |  X |  Y |  SP  | NVPBHIZC |\n"
         result += "+---------------------------------------+\n"
         fmt =  "+ {:04X} | {:02X} | {:02X} | {:02X} | {:04X} | {:08b} |\n"
-        result += fmt.format(self.PC,self.A,self.X, self.Y, self.SP, self.PSW.value)
+        result += fmt.format(self.PC,self.A,self.X, self.Y, self.S, self.P.value)
         result += "+---------------------------------------+\n"
         result += str(self.dsp)
         return result

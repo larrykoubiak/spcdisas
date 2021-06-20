@@ -1,46 +1,54 @@
 from struct import unpack
 import sys
 import types
+from bit import bitget, bitset
+
+bitget = lambda x, b : (x & (1 << b)) >> b
 class SPC700Instruction:
-    def __init__(self, offset, instruction, bytes):
+    def __init__(self, offset = None, instruction=None, bytes=None):
         self.offset = offset
-        self.instruction = instruction
         self.bytes = bytes
         self.label=""
+        self.args = None
         self.operands = None
-        self.format = self.instruction["format"]
+        self.format = None
         self.formatargs = None
+        self.instruction = None
         self.unpackmap = {"b":"B","r":"b","w":"H","m":"H"}
-        self.parse_operands()
+        if instruction is not None:
+            self.parse_instruction(instruction)
 
-    def parse_operands(self):
-        if self.instruction["bytes"] == 1:
+    def parse_instruction(self, instruction):
+        self.args = instruction["args"]
+        self.format = instruction["format"]
+        self.instruction = instruction["fp"]
+        if instruction["bytes"] == 1:
             return
         else:
-            unpackstr = "<" + "".join([self.unpackmap[a] for a in self.instruction["args"]])
+            unpackstr = "<" + "".join([self.unpackmap[a] for a in self.args])
             operands = unpack(unpackstr,self.bytes[1:])
             self.operands = []
-            for argidx in range(len(self.instruction["args"])):
-                arg = self.instruction["args"][argidx]
+            for argidx in range(len(self.args)):
+                arg = self.args[argidx]
                 val = operands[argidx]
                 if arg in ("b","w"):
                     self.operands.append(val)
                 elif arg=="r":
-                    self.operands.append(self.offset + operands[argidx] + self.instruction["bytes"])
+                    self.operands.append(self.offset + operands[argidx] + instruction["bytes"])
                 elif arg=="m":
                     self.operands.append(operands[argidx] & 0x1FFF)
                     self.operands.append(operands[argidx] >> 13)
 
     def tostring(self, resolve_relative):
         result = ""
-        if self.instruction["bytes"] == 1:
+        if len(self.bytes) == 1:
             result = self.format
         else:
             formatargs = self.operands[:]
-            if not resolve_relative and "r" in self.instruction["args"]:
+            if not resolve_relative and "r" in self.args:
                 self.format = self.format.replace(":04x", ":02x")
-                argidx = 0 if self.instruction["args"]=="r" else 1
-                formatargs[argidx] = (formatargs[argidx] - (self.offset + self.instruction["bytes"])) & 0xFF
+                argidx = 0 if self.args=="r" else 1
+                formatargs[argidx] = (formatargs[argidx] - (self.offset + len(self.bytes))) & 0xFF
             result = self.format.format(*formatargs)
         return result
 
@@ -54,9 +62,38 @@ class InstructionMeta(type):
         return type.__new__(cls, name, bases, dct)
 
 def instructionAbsoluteBitModify(self, mode):
+    address = self.fetch()
+    address |= self.fetch() << 8
+    bit = address >> 13
+    address &= 0x1fff
+    data = self.read(address)
+    if mode == 0:
+        self.P.C |= bitget(data, bit)
+    elif mode == 1:
+        self.P.C |= ~bitget(data, bit)
+    elif mode == 2:
+        self.P.C &= bitget(data, bit)
+    elif mode == 3:
+        self.P.C &= ~bitget(data, bit)
+    elif mode == 4:
+        self.P.C ^= bitget(data, bit)
+    elif mode == 5:
+        self.P.C = bitget(data, bit)
+    elif mode == 6:
+        data = bitset(data,bit, self.P.C)
+        self.write(address, data)
+    elif mode == 7:
+        data = bitset(data, bit, ~bitget(data, bit))
+        self.write(address, data)
     return
+
 def instructionAbsoluteBitSet(self, bit, value):
+    address = self.fetch()
+    data = self.load(address)
+    data = bitset(data, bit, value)
+    self.store(address, data)
     return
+    
 def instructionAbsoluteRead(self, op, target):
     return
 def instructionAbsoluteModify(self, op):
@@ -185,37 +222,73 @@ def instructionTransfer(self, start, end):
 def instructionWait(self):
     return
 
-def algorithmADC(x, y):
-	return
-def algorithmAND(x, y):
-	return
-def algorithmASL(x):
-	return
-def algorithmCMP(x, y):
-	return
-def algorithmDEC(x):
-	return
-def algorithmEOR(x, y):
-	return
-def algorithmINC(x):
-	return
-def algorithmLD(x, y):
-	return
-def algorithmLSR(x):
-	return
-def algorithmOR(x, y):
-	return
-def algorithmROL(x):
-	return
-def algorithmROR(x):
-	return
-def algorithmSBC(x, y):
-	return
-def algorithmADW(x, y):
-	return
-def algorithmCPW(x, y):
-	return
-def algorithmLDW(x, y):
-	return
-def algorithmSBW(x, y):
-	return
+def algorithmADC(self, x, y):
+    z = x + y + self.P.C
+    self.P.C = z > 0xFF
+    self.P.Z = (z & 0xFF) == 0
+    self.P.H = (x ^ y ^ z) & 0x10
+    self.P.V = ~(x ^ y) & (x ^ z) & 0x80
+    self.P.N = z & 0x80
+    return z
+
+def algorithmAND(self, x, y):
+    x &= y
+    self.P.Z = x == 0
+    self.P.N = x & 0x80
+    return x
+
+def algorithmASL(self, x):
+    self.P.C = x & 0x80
+    x <<= 1
+    self.P.Z = x == 0
+    self.P.N = x & 0x80
+    return x
+
+def algorithmCMP(self, x, y):
+    z = x - y
+    self.P.C = z >= 0
+    self.P.Z = (z & 0xFF) == 0
+    self.P.N = z & 0x80
+    return x
+
+def algorithmDEC(self, x):
+    x -= 1
+    self.P.Z = x == 0
+    self.P.N = x & 0x80
+    return x
+
+def algorithmEOR(self, x, y):
+    x ^= y
+    self.P.Z = x == 0
+    self.P.N = x & 0x80
+    return x
+
+def algorithmINC(self, x):
+    x += 1
+    self.P.Z = x == 0
+    self.P.N = x & 0x80
+    return x
+
+def algorithmLD(self, x, y):
+    self.P.Z = y == 0
+    self.P.N = y & 0x80
+    return y
+
+def algorithmLSR(self, x):
+    return
+def algorithmOR(self, x, y):
+    return
+def algorithmROL(self, x):
+    return
+def algorithmROR(self, x):
+    return
+def algorithmSBC(self, x, y):
+    return
+def algorithmADW(self, x, y):
+    return
+def algorithmCPW(self, x, y):
+    return
+def algorithmLDW(self, x, y):
+    return
+def algorithmSBW(self, x, y):
+    return
