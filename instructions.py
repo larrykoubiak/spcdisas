@@ -1,7 +1,7 @@
 from struct import unpack
 import sys
 import types
-from bit import bitget, bitset
+from bit import bitget, bitset, int8
 
 bitget = lambda x, b : (x & (1 << b)) >> b
 class SPC700Instruction:
@@ -68,56 +68,146 @@ def instructionAbsoluteBitModify(self, mode):
     address &= 0x1fff
     data = self.read(address)
     if mode == 0:
+        self.idle()
         self.P.C |= bitget(data, bit)
     elif mode == 1:
+        self.idle()
         self.P.C |= ~bitget(data, bit)
     elif mode == 2:
         self.P.C &= bitget(data, bit)
     elif mode == 3:
         self.P.C &= ~bitget(data, bit)
     elif mode == 4:
+        self.idle()
         self.P.C ^= bitget(data, bit)
     elif mode == 5:
         self.P.C = bitget(data, bit)
     elif mode == 6:
+        self.idle()
         data = bitset(data,bit, self.P.C)
         self.write(address, data)
     elif mode == 7:
         data = bitset(data, bit, ~bitget(data, bit))
         self.write(address, data)
-    return
 
 def instructionAbsoluteBitSet(self, bit, value):
     address = self.fetch()
     data = self.load(address)
     data = bitset(data, bit, value)
     self.store(address, data)
-    return
     
 def instructionAbsoluteRead(self, op, target):
-    return
+    address = self.fetch()
+    address |= self.fetch() << 8
+    data = self.read(address)
+    reg = getattr(self, target)
+    setattr(self, target, op(reg, data))
+
 def instructionAbsoluteModify(self, op):
-    return
+    address = self.fetch()
+    address |= self.fetch() << 8
+    data = self.read(address)
+    self.write(address, op(data))
+
 def instructionAbsoluteWrite(self, data):
-    return
+    address = self.fetch()
+    address |= self.fetch() << 8
+    self.read(address)
+    self.write(address, data)
+
 def instructionAbsoluteIndexedRead(self, op, index):
-    return
+    address = self.fetch()
+    address |= self.fetch() << 8
+    self.idle()
+    reg = getattr(self, index)
+    data = self.read(address + reg)
+    self.A = op(self.A, data)
+
 def instructionAbsoluteIndexedWrite(self, index):
-    return
+    address = self.fetch()
+    address |= self.fetch() << 8
+    self.idle()
+    reg = getattr(self, index)
+    self.read(address + reg)
+    self.write(address + reg, self.A)
+
 def instructionBranch(self, take):
-    return
+    data = self.fetch()
+    if not take:
+        return
+    self.idle()
+    self.idle()
+    self.PC += data & 0xFF
+
 def instructionBranchBit(self, bit, match):
-    return
+    address = self.fetch()
+    data = self.load(address)
+    self.idle()
+    displacement = self.fetch()
+    if bitget(data,bit) != int(match):
+        return
+    self.idle()
+    self.idle()
+    self.PC += int8(displacement)
+
 def instructionBranchNotDirect(self):
-    return
+    address = self.fetch()
+    data = self.load(address)
+    self.idle()
+    displacement = self.fetch()
+    if(self.A == data):
+        return
+    self.idle()
+    self.idle()
+    self.PC += int8(displacement)
+
 def instructionBranchNotDirectDecrement(self):
-    return
+    address = self.fetch()
+    data = self.load(address) -1
+    self.store(address, data)
+    displacement = self.fetch()
+    if(data == 0):
+        return
+    self.idle()
+    self.idle()
+    self.PC += int8(displacement)
+
 def instructionBranchNotDirectIndexed(self, index):
-    return
+    address = self.fetch()
+    self.idle()
+    reg = getattr(self, index)
+    data = self.load(address + reg)
+    self.idle()
+    displacement = self.fetch()
+    if(self.A == data):
+        return
+    self.idle()
+    self.idle()
+    self.PC += int8(displacement)
+
 def instructionBranchNotYDecrement(self):
-    return
+    self.read(self.PC)
+    self.idle()
+    displacement = self.fetch()
+    self.Y -= 1
+    if(self.Y == 0):
+        return
+    self.idle()
+    self.idle()
+    self.PC += int8(displacement)
+
 def instructionBreak(self):
-    return
+    self.read(self.PC)
+    self.push(self.PC >> 8)
+    self.push(self.PC >> 0)
+    self.push(self.P.value)
+    self.idle()
+    address = self.read(0xffde + 0)
+    address |= self.read(0xffde + 1) << 8
+    self.PC = address
+    self.P.I = 0
+    self.P.B = 1
+
 def instructionCallAbsolute(self):
     return
 def instructionCallPage(self):
@@ -167,9 +257,12 @@ def instructionDivide(self):
 def instructionExchangeNibble(self):
     return
 def instructionFlagSet(self, flag, value):
-    flag = int(value)
+    self.P.value = bitset(self.P.value, flag, int(value))
     return
 def instructionImmediateRead(self, op, target):
+    data = self.fetch()
+    reg = getattr(self, target)
+    setattr(self, target, op(reg, data))
     return
 def instructionImpliedModify(self, op, target):
     return
@@ -218,7 +311,14 @@ def instructionStop(self):
 def instructionTestSetBitsAbsolute(self, set):
     return
 def instructionTransfer(self, start, end):
-    return
+    self.read(self.PC)
+    src = getattr(self, start)
+    setattr(self, end, src)
+    if start == "S":
+        return
+    self.P.Z = src == 0
+    self.P.N = src & 0x80
+
 def instructionWait(self):
     return
 
@@ -229,66 +329,105 @@ def algorithmADC(self, x, y):
     self.P.H = (x ^ y ^ z) & 0x10
     self.P.V = ~(x ^ y) & (x ^ z) & 0x80
     self.P.N = z & 0x80
-    return z
+    return z & 0xFF
 
 def algorithmAND(self, x, y):
     x &= y
     self.P.Z = x == 0
     self.P.N = x & 0x80
-    return x
+    return x & 0xFF
 
 def algorithmASL(self, x):
     self.P.C = x & 0x80
     x <<= 1
     self.P.Z = x == 0
     self.P.N = x & 0x80
-    return x
+    return x & 0xFF
 
 def algorithmCMP(self, x, y):
     z = x - y
     self.P.C = z >= 0
     self.P.Z = (z & 0xFF) == 0
     self.P.N = z & 0x80
-    return x
+    return x & 0xFF
 
 def algorithmDEC(self, x):
     x -= 1
     self.P.Z = x == 0
     self.P.N = x & 0x80
-    return x
+    return x & 0xFF
 
 def algorithmEOR(self, x, y):
     x ^= y
     self.P.Z = x == 0
     self.P.N = x & 0x80
-    return x
+    return x & 0xFF
 
 def algorithmINC(self, x):
     x += 1
     self.P.Z = x == 0
     self.P.N = x & 0x80
-    return x
+    return x & 0xFF
 
 def algorithmLD(self, x, y):
     self.P.Z = y == 0
     self.P.N = y & 0x80
-    return y
+    return y & 0xFF
 
 def algorithmLSR(self, x):
-    return
+    self.P.C = x & 0x01
+    x >>= 1
+    self.P.Z = x == 0
+    self.P.N = x & 0x80
+    return x & 0xFF
+
 def algorithmOR(self, x, y):
-    return
+    x |= y
+    self.P.Z = x == 0
+    self.P.N = x & 0x80
+    return x & 0xFF
+
 def algorithmROL(self, x):
-    return
+    carry = self.P.C
+    self.P.C = x & 0x80
+    x = x << 1 | carry
+    self.P.Z = x == 0
+    self.P.N = x & 0x80
+    return x & 0xFF
+
 def algorithmROR(self, x):
-    return
+    carry = self.P.C
+    self.P.C = x & 0x01
+    x = carry << 7 | x >> 1
+    self.P.Z = x == 0
+    self.P.N = x & 0x80
+    return x & 0xFF
+
 def algorithmSBC(self, x, y):
-    return
+    return self.algorithmADC(x, ~y)
+
 def algorithmADW(self, x, y):
-    return
+    self.P.C = 0
+    z  = self.algorithmADC(x & 0xFF, y & 0xFF)
+    z |= self.algorithmADC(x >> 8, y >> 8) << 8
+    self.P.Z = z == 0
+    return z & 0xFFFF
+
 def algorithmCPW(self, x, y):
-    return
+    z = x - y
+    self.P.C = z >= 0
+    self.P.Z = (z & 0xFFFF) == 0
+    self.P.N = z & 0x8000
+    return x & 0xFFFF
+
 def algorithmLDW(self, x, y):
-    return
+    self.P.Z = y == 0
+    self.P.N = y & 0x8000
+    return y & 0xFFFF
+
 def algorithmSBW(self, x, y):
-    return
+    self.P.C = 1
+    z  = self.algorithmSBC(x & 0xFF, y & 0xFF)
+    z |= self.algorithmSBC(x >> 8, y >> 8) << 8
+    self.P.Z = z == 0
+    return z

@@ -43,35 +43,35 @@ class PSW:
 
     @C.setter
     def C(self, value):
-        self.value = bitset(self.value, 0, value) 
+        self.value = bitset(self.value, 0, 1 if (value > 0 or value == True) else 0) 
 
     @Z.setter
     def Z(self, value):
-        self.value = bitset(self.value, 1, value)
+        self.value = bitset(self.value, 1, 1 if (value > 0 or value == True) else 0)
 
     @I.setter
     def I(self, value):
-        self.value = bitset(self.value, 2, value)
+        self.value = bitset(self.value, 2, 1 if (value > 0 or value == True) else 0)
 
     @H.setter
     def H(self, value):
-        self.value = bitset(self.value, 3, value)
+        self.value = bitset(self.value, 3, 1 if (value > 0 or value == True) else 0)
 
     @B.setter
     def B(self, value):
-        self.value = bitset(self.value, 4, value)
+        self.value = bitset(self.value, 4, 1 if (value > 0 or value == True) else 0)
 
     @P.setter
     def P(self, value):
-        self.value = bitset(self.value, 5, value)
+        self.value = bitset(self.value, 5, 1 if (value > 0 or value == True) else 0)
 
     @V.setter
     def V(self, value):
-        self.value = bitset(self.value, 6, value)
+        self.value = bitset(self.value, 6, 1 if (value > 0 or value == True) else 0)
 
     @N.setter
     def N(self, value):
-        self.value = bitset(self.value, 7, value)
+        self.value = bitset(self.value, 7, 1 if (value > 0 or value == True) else 0)
 
 class SPC700(metaclass=InstructionMeta):
     def __init__(self, reg_bytes=None, ram=None, dspreg_bytes=None, ipl_ram=None):
@@ -109,9 +109,13 @@ class SPC700(metaclass=InstructionMeta):
         self.P = PSW(reg_bytes[8])
 
     def read(self, address):
+        ## TODO : implement timing
+        ## TODO : implement MMIO
         return self.RAM[address]
 
     def write(self, address, data):
+        ## TODO : implement timing
+        ## TODO : implement MMIO
         self.RAM[address] = data
     
     def fetch(self):
@@ -135,6 +139,7 @@ class SPC700(metaclass=InstructionMeta):
         self.S -= 1
 
     def idle(self):
+        ## TODO : implement timing
         pass
 
     def init_instructions(self):
@@ -145,11 +150,14 @@ class SPC700(metaclass=InstructionMeta):
             else:
                 for a in self.__instructions[i]["instruction_args"].split(','):
                     if a in ('A','P','S','X','Y'):
-                        fn += "self." + a + ","
+                        fn += "'"+ a + "',"
                     elif a.startswith("fp"):
                         fn += "self.algorithm" + a[3:-1] + ","
                     elif len(a) >= 2 and a[1] == 'F':
-                        fn += "self.P." + a[0] + a[2:] + ","
+                        if len(a) == 2:
+                            fn += str("CZIHBPVN".index(a[0])) + ","
+                        else:
+                            fn += "self.P." + a[0] + a[2:] + ","
                     else:
                         fn += a + ","
                 fn = fn[:-1] + ")"
@@ -167,7 +175,7 @@ class SPC700(metaclass=InstructionMeta):
         return decinc
 
     def step(self):
-        opcode = self.RAM[self.PC]
+        opcode = self.fetch()
         instruction = self.__instructions[opcode]
         instruction["fp"]()        
 
