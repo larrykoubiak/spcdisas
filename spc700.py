@@ -1,8 +1,8 @@
 from json import load
 from struct import unpack
 from instructions import SPC700Instruction, InstructionMeta
-import instructions
 from dsp import DSP
+from mmio import MMIO
 from bit import bitget, bitset
 class PSW:
     def __init__(self, byte):
@@ -88,9 +88,8 @@ class SPC700(metaclass=InstructionMeta):
         self.stop = False
         if reg_bytes is not None:
             self.__parsebytes(reg_bytes)
-        self.RAM = bytearray(0x10000) if ram is None else ram
-        self.IPLRAM = bytearray(0x40) if ipl_ram is None else ipl_ram
-        self.dsp = None if dspreg_bytes is None else DSP(self.RAM, dspreg_bytes)
+        self.io = MMIO(ram, ipl_ram)
+        self.dsp = None if dspreg_bytes is None else DSP(self.io.RAM, dspreg_bytes)
 
     @property
     def YA(self):
@@ -113,13 +112,12 @@ class SPC700(metaclass=InstructionMeta):
 
     def read(self, address):
         ## TODO : implement timing
-        ## TODO : implement MMIO
-        return self.RAM[address]
+        return self.io.RAM[address]
 
     def write(self, address, data):
         ## TODO : implement timing
         ## TODO : implement MMIO
-        self.RAM[address] = data
+        self.io.RAM[address] = data
     
     def fetch(self):
         value = self.read(self.PC)
@@ -168,12 +166,12 @@ class SPC700(metaclass=InstructionMeta):
             self.__instructions[i]["fp"] = fp
 
     def decodePC(self):
-        opcode = self.RAM[self.PC]
+        opcode = self.io.RAM[self.PC]
         instruction = self.__instructions[opcode]
         decinc = SPC700Instruction(
             self.PC,
             instruction,
-            self.RAM[self.PC: self.PC + instruction["bytes"]])
+            self.io.RAM[self.PC: self.PC + instruction["bytes"]])
         self.PC += instruction["bytes"]
         return decinc
 
@@ -183,7 +181,7 @@ class SPC700(metaclass=InstructionMeta):
         decinc = SPC700Instruction(
             self.PC -1,
             instruction,
-            self.RAM[self.PC-1: self.PC -1 + instruction["bytes"]])
+            self.io.RAM[self.PC-1: self.PC -1 + instruction["bytes"]])
         instruction["fp"]()        
         print("{:04X}: {:10} {:20} {}".format(
             decinc.offset,
