@@ -18,16 +18,24 @@ class SPCFile:
             self.__parsefile()
 
     def __parsefile(self):
-        f = open(self.path, 'rb')
-        fields = unpack("<33s4B", f.read(0x25))
+        with open(self.path, 'rb') as f:
+            headerbytes = f.read(0x25)
+            spcregbytes = f.read(0x09)
+            id666bytes = f.read(0xD2)
+            ram = f.read(0x10000)
+            dspregbytes = f.read(0xC0)
+            iplram = f.read(0x40)
+            extendedid666bytes = f.read()
+        self.__parserheader(headerbytes)
+        self.spc700 = SPC700(spcregbytes, bytearray(ram), dspregbytes, iplram)
+        self.id666 = ID666Tag(id666bytes)
+        self.extended666 = ExtendedID666Tag(extendedid666bytes)
+
+    def __parserheader(self, headerbytes):
+        fields = unpack("<33s4B", headerbytes)
         self.header= fields[0].decode()
         self.header_flags = fields[3]
         self.version = fields[4]
-        spcregbytes = f.read(0x09)
-        self.id666 = ID666Tag(f.read(0xD2))
-        self.spc700 = SPC700(spcregbytes, bytearray(f.read(0x10000)), f.read(0xC0), f.read(0x40))
-        self.extended666 = ExtendedID666Tag(f.read())
-        f.close()
 
     def disassemble(self, pc, stop, rel, hex, addr):
         self.spc700.PC = int(pc, 16)
@@ -61,7 +69,7 @@ class SPCFile:
         )
         os.makedirs(path, exist_ok=True)
         for track_id in range(64):
-            sample = self.spc700.dsp.sample_2_wav(track_id)
+            sample = self.spc700.io.DSP.sample_2_wav(track_id)
             if sample is not None and sample != b'\0':
                 filename = os.path.join(path,"sample_{:02d}.wav".format(track_id))
                 with open(filename,'wb') as f:
