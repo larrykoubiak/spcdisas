@@ -80,15 +80,15 @@ class BRR:
 
     def to_wave(self, looppoint=None):
         wav = WAVFileChunk()
-        wav.addchunk(FormatChunk(1,1,32000,16))
+        wav.addchunk(FormatChunk(1,1,32040,16))
         wav.addchunk(DataChunk(self.pcmsamples,"h",2))
         if looppoint is not None:
-            sampler = SamplerChunk(32000)
+            sampler = SamplerChunk(32040)
             sampler.addloop(SampleLoop(0, 0, looppoint, len(self.pcmsamples) * 2))
             wav.addchunk(sampler)
         return wav.to_bytes()
 
 if __name__ == '__main__':
     from spcfile import SPCFile
-    f = SPCFile("test/01 Fear of the Heavens.spc")
-    f.extract_samples(0x1900)
+    f = SPCFile("S:\\VGM\\Packs\\spcsets\\Secret of Mana (Seiken Densetsu 2) [sd2]\\sd2-01.spc")
+    f.extract_samples()
