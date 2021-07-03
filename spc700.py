@@ -1,7 +1,6 @@
 from json import load
 from struct import unpack
 from instructions import SPC700Instruction, InstructionMeta
-from dsp import DSP
 from mmio import MMIO
 from bit import bitget, bitset
 class PSW:
@@ -88,8 +87,7 @@ class SPC700(metaclass=InstructionMeta):
         self.stop = False
         if reg_bytes is not None:
             self.__parsebytes(reg_bytes)
-        self.io = MMIO(ram, ipl_ram)
-        self.dsp = None if dspreg_bytes is None else DSP(self.io.RAM, dspreg_bytes)
+        self.io = MMIO(ram, ipl_ram, dspreg_bytes)
 
     @property
     def YA(self):
@@ -111,13 +109,10 @@ class SPC700(metaclass=InstructionMeta):
         self.P = PSW(reg_bytes[8])
 
     def read(self, address):
-        ## TODO : implement timing
-        return self.io.RAM[address]
+        return self.io.read(address)
 
     def write(self, address, data):
-        ## TODO : implement timing
-        ## TODO : implement MMIO
-        self.io.RAM[address] = data
+        self.io.write(address,data)
     
     def fetch(self):
         value = self.read(self.PC)
@@ -166,7 +161,7 @@ class SPC700(metaclass=InstructionMeta):
             self.__instructions[i]["fp"] = fp
 
     def decodePC(self):
-        opcode = self.io.RAM[self.PC]
+        opcode = self.read(self.PC)
         instruction = self.__instructions[opcode]
         decinc = SPC700Instruction(
             self.PC,
@@ -205,5 +200,5 @@ class SPC700(metaclass=InstructionMeta):
         fmt =  "+ {:04X} | {:02X} | {:02X} | {:02X} | {:04X} | {:08b} |\n"
         result += fmt.format(self.PC,self.A,self.X, self.Y, self.S, self.P.value)
         result += "+---------------------------------------+\n"
-        result += str(self.dsp)
+        result += str(self.io.DSP)
         return result
